@@ -101,6 +101,18 @@ module.exports = function(grunt) {
       src: 'css/*.css'
     }
   }
+ 
+ config.svgstore = {
+    options: {
+      cleanup:true,
+      cleanupdefs:true
+    },
+    min: {
+      // Target-specific file lists and/or options go here. 
+      src:['img/src/**/*.svg'],
+      dest:'img/sprite.svg'
+    },
+  };
 
   config.watch = {
     sass: {
@@ -110,11 +122,16 @@ module.exports = function(grunt) {
     js: {
       files: ['js/src/**/*.js'],
       tasks: ['browserify:app']
+    },
+    svg: {
+      files: ['img/src/**/*.svg'],
+      tasks: ['svgstore']
     }
   };
 
   grunt.initConfig(config);
 
+  grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -122,6 +139,7 @@ module.exports = function(grunt) {
 
   var defaultTasks = [];
 
+  defaultTasks.push('svgstore');
   defaultTasks.push('sass');
   defaultTasks.push('browserify');
   defaultTasks.push('postcss');

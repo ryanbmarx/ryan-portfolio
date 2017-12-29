@@ -1,0 +1,141 @@
+{% macro rating(r, label) %}
+	<dl class='rating'>
+		<dt class='rating__label'>{{ label }}</dt>
+		<dd class='rating__dots'>
+			{% for number in range(0,r) %}
+				<span class='rating__dot--rated'></span>
+			{% endfor %}
+			{% for number in range(0,10-r) %}
+				<span class='rating__dot--unrated'></span>
+			{% endfor %}
+		</dd>
+	</dl>
+{% endmacro %}
+
+{% macro rating_bar(r, label) %}
+	<dl class='rating'>
+		<dt class='rating__label'>{{ label }}</dt>
+		<dd class='rating__bar-wrapper'>
+			<div class='rating__bar' style='width: {{ r * 10 }}%'></div>
+		</dd>
+	</dl>
+{% endmacro %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DataViz and Front-End | Ryan B. Marx</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{# Google analytics #}
+	{# structured data #}
+	{# social #}
+
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<header id="header" class='header'>
+		<nav id='nav' class='nav'>
+			nav nav nav nav nav
+		</nav>
+		<div class='header__text-wrapper'>
+			<h1 class='header__name'>Ryan Marx</h1>
+			<h2>
+				<span class='header__text--data'>Visualizing data</span>
+				<span class='header__text--stories'>Telling stories</span>
+				<span class='header__text--experiences'>Creating experiences</span>
+			</h2>
+
+		</div>
+	</header>
+	<section class='section section--about-me'>
+		<h3 class='section__header'>About me</h3>
+		<div class='section__inner'>
+			<div class='bio'>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequatur, corporis. Voluptate asperiores illum error amet consequatur dolores, inventore molestias quibusdam reiciendis voluptatum consequuntur, ducimus nulla fugit distinctio quod a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nam nobis rem tempore. Porro quia, sunt, doloremque impedit expedita eos? Saepe laborum laudantium quibusdam aliquam itaque voluptates minima fugit consequatur!</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequatur, corporis. Voluptate asperiores illum error amet consequatur dolores, inventore molestias quibusdam reiciendis voluptatum consequuntur, ducimus nulla fugit distinctio quod a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nam nobis rem tempore. Porro quia, sunt, doloremque impedit expedita eos? Saepe laborum laudantium quibusdam aliquam itaque voluptates minima fugit consequatur!</p>
+			</div>
+			<div class='work-history'>
+				<h4>Work history</h4>
+				<div class='timeline'>
+					<div class='timeline__labels'>
+						<span class='timeline__label'>2002</span>
+						<span class='timeline__label timeline__label--05'>2005</span>
+						<span class='timeline__label timeline__label--10'>2010</span>
+						<span class='timeline__label'>2017</span>
+					</div>	
+					<div class='timeline__lines'>
+						<div class='timeline__line timeline__line--ne'></div>
+						<div class='timeline__line timeline__line--nwi'></div>
+						<div class='timeline__line timeline__line--trib'></div>
+					</div>
+					<div class='timeline__jobs'>
+						<div class='job job--ne'>
+							<span class='job__title'>Copy editor, designer, Presentation Editor</span>
+							<span class='job__employer'>The News-Enterprise</span>
+						</div>
+						<div class='job job--nwi'>
+							<span class='job__title'>Designer, Graphics Editor</span>
+							<span class='job__employer'>The Times of Northwest Indiana</span>
+						</div>
+						<div class='job job--trib'>
+							<span class='job__title'>Graphic reporter, Assistant DataViz Editor</span>
+							<span class='job__employer'>Chicago Tribune</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='skills'>
+				<h4>Skills</h4>
+				{% for skill in skills %}
+					{{ rating_bar(skill.rating, skill.name)}}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<section class='section section--portfolio'>
+		<h3 class='section__header'>My work</h3>
+		<div class='section__inner'>
+			<div class='filters'>
+				{% for t in get_tags_list(projects) %}
+				<button class='filter filter--active' data-tag='t|lower'>{{ t|upper }}</button>
+				{% endfor %}
+			</div>
+		<div class='projects'>
+		{% for p in projects|sort(attribute="date") %}
+
+			<div id="{{ p.id }}" class='project' {{ p.tags|get_tags(False) }}>
+				<figure class='project__thumb'>
+					<img src="img/chart.png" alt='TKTKTKTK' />
+				</figure>
+				<h3 class='project__name'>{{ p.name }}</h3>
+				<ul class='project__tags'>
+					{{ p.tags|get_tags(True) }}
+				</ul>
+
+				{{ p.description|markdown}}
+				<ul class='project__links'>
+					<li>
+						<a href="{{ p.link_prod }}" aria-label="Visit this graphic" target="_blank">
+							<span class='sr-only'>"Visit this graphic"</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ p.link_git }}" aria-label="Visit the GitHub repository" target="_blank">
+							<span class='sr-only'>"Visit the GitHub repository"</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+	</section>
+	<footer></footer>
+	<script type="text/javascript" src="js/app.min.js"></script>
+</body>
+</html>
+
+{# vert sticky nav? #}

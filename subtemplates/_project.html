@@ -1,0 +1,28 @@
+<div id="{{ p.id }}" class='project' {# {{ p.tags|get_tags(False) }} #}>
+	<figure class='project__thumb'>
+		<img src="img/chart.png" alt='TKTKTKTK' />
+	</figure>
+	<h3 class='project__name'>{{ p.name }}</h3>
+	<ul class='project__tags'>
+		{# {{ p.tags|get_tags(True) }} #} Tags TKTKTK
+	</ul>
+	<dl>
+		<dt>Created: </dt>
+		<dd>{{ p.date_created }}</dd>
+		<dt>Updated: </dt>
+		<dd>{{ p.date_updated }}</dd>
+	</dl>
+	<p>{{ p.description }}</p>
+	<ul class='project__links'>
+		<li>
+			<a href="{{ 'TKTKTK' }}" aria-label="Visit this graphic" target="_blank">XX
+				<span class='sr-only'>"Visit this graphic"</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{ p.repo_url }}" aria-label="Visit the GitHub repository" target="_blank">XX
+				<span class='sr-only'>"Visit the GitHub repository"</span>
+			</a>
+		</li>
+	</ul>
+</div>

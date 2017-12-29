@@ -7,13 +7,47 @@ Tarbell project configuration
 from flask import Blueprint, g, render_template
 # import ftfy
 from markupsafe import Markup
-
 import jinja2
+from tarbell.hooks import register_hook
 
-# For list flattening in get tag list
-import operator
+import operator # For list flattening in get tag list
+from github import Github # For generating projects
+
+import os #For the environment variables
+import re # regex
 
 blueprint = Blueprint('ryan-portfolio', __name__)
+
+# @register_hook('preview')
+@blueprint.app_template_global('generate_projects_list')
+def generate_projects_list():
+    user = os.environ['github_user']
+    password = os.environ['github_password']
+
+    ryanbmarx = Github(user, password)
+    repos = ryanbmarx.get_user().get_repos()
+    
+    repositories = []
+    for repo in repos:
+        if repo.owner.login == user:
+            r = {}
+            r['id'] = repo.id
+            r['name'] = format_name(repo.name)
+            r['description'] = repo.description
+            r['repo_url'] = repo.html_url
+            r['date_created'] = repo.created_at
+            r['date_updated'] = repo.updated_at
+ 
+            repositories.append(r)
+            
+    return repositories
+
+def format_name(name):
+    """
+    Make nicely-edited, human readable name for the project
+    """
+
+    return re.sub("-"," ",name).title()
 
 # @blueprint.app_template_global('get_labels')
 # @blueprint.app_template_filter()

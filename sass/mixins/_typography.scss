@@ -1,0 +1,11 @@
+%serif{
+	font: 16px/1.5em #{$serif-fonts};
+}
+
+%sans-serif{
+	font: 16px/1.3em #{$sans-serif-fonts};
+}
+
+%label{
+	font: 14px/1.3em #{$sans-serif-fonts};
+}

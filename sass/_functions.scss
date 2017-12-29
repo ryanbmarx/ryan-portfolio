@@ -1,0 +1,24 @@
+/*
+This simple function takes a background color and finds the optimum color for text on top of it. 
+By default, it will return the more readable of black or white. The optional second parameter can 
+return the exact inverse of the color.
+
+@param $color: Any sass color object (keyword, hex, rgb, etc.)
+@param $bw_only: Boolean flag, defaults ot true, which forces either black or white text color
+
+*/
+
+
+@function set-text-color($color, $bw_only: true) {
+  @if $bw_only{
+  		// If we're seeking only the better (more readable) choice between black and white, then ...
+		@if (lightness($color) > 50) {
+			@return #000000; // Lighter background, return dark color
+		} @else {
+			@return #ffffff; // Darker background, return light color
+		}
+	} @else {
+		// If we want just the inverse, return it.
+		@return invert($color); 
+	}
+}

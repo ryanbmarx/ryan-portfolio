@@ -1,0 +1,86 @@
+
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px 15px;
+	background: black;
+	z-index:1000;
+	box-sizing:border-box;
+
+	color: white;
+	font: 13px/1em #{$sans-serif-fonts} sans-serif;
+	font-weight: bold;
+}
+
+%header__text{
+	@include responsive-font(4.75vw, 35px, 100px, 50px);
+	font-family: #{$display-fonts}, sans-serif;
+	line-height: 0.82em;
+	color:white;
+	text-transform:uppercase;
+	text-shadow: 2px 2px 5px rgba(black, .7);
+
+	display:block;
+	padding: 0 0 0 10px;
+	border-left: 3px solid white;
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
+
+.header{
+	background: #eee url(../rmarx04.jpg) center right no-repeat;
+	background-size: cover;
+	height: 100vh;
+	box-sizing:border-box;
+	// padding: 25px;
+
+	&__name{
+		font: 18px/1.2em #{$display-fonts}, sans-serif;
+		font-weight: bold;
+		color: white;
+		margin: 0 0 #{$grid-gap / 2} 0;
+		padding: 0;
+		text-transform: uppercase;
+
+	}
+
+	h2{
+		margin: 0; 
+		padding:0;
+	}
+
+	&__text-wrapper{
+		background: rgba(black, .4);
+		box-sizing:border-box;
+		padding: $grid-gap;
+		width: 40%;
+		height: 100%;
+
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-wrap: wrap;
+		flex-flow: column;
+	}
+
+	&__text{
+		&--data{
+			@extend %header__text;
+			color: $apricot-light;
+			border-color: $apricot-light;
+		}
+		&--stories{
+			@extend %header__text;
+			color: $isabelline;
+			border-color: $isabelline;
+		}
+		&--experiences{
+			@extend %header__text;
+			color: $blue-baby;
+			border-color: $blue-baby;
+		}
+	}
+
+
+}

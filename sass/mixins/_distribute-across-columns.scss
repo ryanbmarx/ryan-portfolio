@@ -1,0 +1,14 @@
+@mixin distribute_across_columns($columns, $gap){
+	// For a flex design, evenly spreads flex contents across specified columns
+	@if $columns > 1 {
+		
+		$gutters: $columns - 1;
+
+		width: #{95% / $columns}; // fallback
+		width: calc((100% - #{$gap * $gutters}) / #{$columns});
+		margin: 0 0 #{$gap} 0;
+	} @else {
+		width: 100%;
+		margin: 0 0 #{$gap} 0;
+	}
+}

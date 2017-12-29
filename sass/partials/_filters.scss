@@ -1,0 +1,32 @@
+.filters{
+	margin: $grid-gap 0;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	flex-wrap:wrap;
+}
+
+.filter{
+	@include distribute_across_columns(5, 5px);
+	background: $isabelline;
+	border: none;
+	padding: 10px; 
+	cursor: pointer;
+	margin: 0 5px 5px 0;
+	transition: all 150ms ease;
+	color: set-text-color($isabelline, true);
+	
+	&:hover{
+		color: set-text-color($green, true);
+		background: rgba($green, .2);
+		transition: all 150ms ease;
+
+	}
+
+	&--active, &:hover.filter--active {
+		color: set-text-color($green, true);
+		background: $green;
+		transition: all 150ms ease;
+	}
+}
+

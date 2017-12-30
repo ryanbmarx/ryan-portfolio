@@ -1,0 +1,53 @@
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	padding: 10px 15px;
+	background: $black;
+	z-index:1000;
+	box-sizing:border-box;
+
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+
+	color: white;
+	font: 19px/1em #{$display-fonts};
+	font-weight: bold;
+
+	&__name{
+		margin: 0;
+	}
+
+	&__links{
+		flex:1; // take all the space it needs from the nav
+
+		// Evenly space it's nav links
+		display:flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	&__link{
+		// margin-right: 10px;
+		&:last-child{
+			// margin-right: 0;
+		}
+
+		a{
+			text-decoration: none;
+			color: inherit;
+			padding: 10px;
+			transition: background 150ms ease;
+			border-radius: 5px;
+			&:hover{
+				background:rgba(white, .3);
+				transition: background 150ms ease;
+			}
+		}
+	}
+
+}
+

@@ -74,13 +74,12 @@ def format_name(name):
 # @jinja2.contextfilter
 @blueprint.app_template_filter('get_topic_tags')
 def get_topic_tags(tags, return_html=False):
+    retval = ""
     if return_html:
-        retval = ""
         for t in tags:
             retval += "<li>#{}</li>".format(t.lower().strip())
-        # return Markup(retval)
     else:
-        retval = ""
+        print tags
         for t in tags:
             retval += " data-{}".format(t.strip())
     return Markup(retval)
@@ -93,19 +92,11 @@ def get_tags_list(projects):
     """
     tag_list = []
     for p in projects:
-        tag_list.append(p['tags'].split(','))
+        tag_list.append(p['topics'])
     
     tag_list = reduce(operator.add, tag_list)
     tag_list = list(set(tag_list))
     return tag_list
-	
-@blueprint.app_template_filter('format_date')
-def format_vote_date(date_to_format, format=False):
-    """
-    Format date based on given format string
-    """
-    print date_to_format
-    # return date_to_format.strftime(format)
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "16I7B3l2Dew220S_NwCQjTMCnTK9eCbjjlxpbEmA2fGU"

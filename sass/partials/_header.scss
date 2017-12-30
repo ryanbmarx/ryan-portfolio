@@ -1,19 +1,4 @@
 
-.nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 10px 15px;
-	background: black;
-	z-index:1000;
-	box-sizing:border-box;
-
-	color: white;
-	font: 13px/1em #{$sans-serif-fonts} sans-serif;
-	font-weight: bold;
-}
-
 %header__text{
 	@include responsive-font(4.75vw, 35px, 100px, 50px);
 	font-family: #{$display-fonts}, sans-serif;
@@ -29,7 +14,7 @@
 }
 
 .header{
-	background: #eee url(../rmarx04.jpg) center right no-repeat;
+	background: #eee url(../header-background--mobile.jpg) center right no-repeat;
 	background-size: cover;
 	height: 100vh;
 	box-sizing:border-box;
@@ -81,6 +66,23 @@
 			border-color: $blue-baby;
 		}
 	}
+}
+@media all and (min-width: $phablet-min-width){
+	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS	
+}
+
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+	.header{
+		background: #eee url(../header-background--tablet.jpg) center right no-repeat;
+	}
 
 
+}
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+	.header{
+		background: #eee url(../header-background--desktop.jpg) center right no-repeat;
+	}
 }

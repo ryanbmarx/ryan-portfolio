@@ -37,11 +37,9 @@
 </head>
 <body>
 	<header id="header" class='header'>
-		<nav id='nav' class='nav'>
-			nav nav nav nav nav
-		</nav>
+		{% include 'subtemplates/_nav.html' %}
 		<div class='header__text-wrapper'>
-			<h1 class='header__name'>Ryan Marx</h1>
+{# 			<h1 class='header__name'>Ryan Marx</h1> #}
 			<h2>
 				<span class='header__text--data'>Visualizing data</span>
 				<span class='header__text--stories'>Telling stories</span>
@@ -50,14 +48,14 @@
 
 		</div>
 	</header>
-	<section class='section section--about-me'>
+	<section id="about" class='section section--about-me'>
 		<h3 class='section__header'>About me</h3>
 		<div class='section__inner'>
 			<div class='bio'>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequatur, corporis. Voluptate asperiores illum error amet consequatur dolores, inventore molestias quibusdam reiciendis voluptatum consequuntur, ducimus nulla fugit distinctio quod a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nam nobis rem tempore. Porro quia, sunt, doloremque impedit expedita eos? Saepe laborum laudantium quibusdam aliquam itaque voluptates minima fugit consequatur!</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequatur, corporis. Voluptate asperiores illum error amet consequatur dolores, inventore molestias quibusdam reiciendis voluptatum consequuntur, ducimus nulla fugit distinctio quod a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nam nobis rem tempore. Porro quia, sunt, doloremque impedit expedita eos? Saepe laborum laudantium quibusdam aliquam itaque voluptates minima fugit consequatur!</p>
 			</div>
-			<div class='work-history'>
+			<div id='history' class='work-history'>
 				<h4>Work history</h4>
 				<div class='timeline'>
 					<div class='timeline__labels'>
@@ -87,7 +85,7 @@
 					</div>
 				</div>
 			</div>
-			<div class='skills'>
+			<div id='skills' class='skills'>
 				<h4>Skills</h4>
 				{% for skill in skills %}
 					{{ rating_bar(skill.rating, skill.name)}}
@@ -95,13 +93,13 @@
 			</div>
 		</div>
 	</section>
-	<section class='section section--portfolio'>
+	<section id='work' class='section section--portfolio'>
 		{% set projects_list = generate_projects_list() %}
 		<h3 class='section__header'>My work</h3>
 		<div class='section__inner'>
 			<div class='filters'>
-				{% for t in get_tags_list(projects) %}
-				<button class='filter filter--active' data-tag='t|lower'>{{ t|upper }}</button>
+				{% for t in get_tags_list(projects_list) %}
+				<button class='filter filter--checked' data-topic='{{ t|lower }}'>{{ t|upper }}</button>
 				{% endfor %}
 			</div>
 		<div class='projects'>
@@ -112,7 +110,7 @@
 		</div>
 	</div>
 	</section>
-	<footer></footer>
+	<footer>FOOTY</footer>
 	<script type="text/javascript" src="js/app.min.js"></script>
 </body>
 </html>

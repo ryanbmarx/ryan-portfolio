@@ -15,15 +15,18 @@
 	margin: 0 5px 5px 0;
 	transition: all 150ms ease;
 	color: set-text-color($isabelline, true);
+	box-sizing: border-box;
+	border: 1px solid transparent;
 	
 	&:hover{
-		color: set-text-color($green, true);
-		background: rgba($green, .2);
+		// color: set-text-color($green, true);
+		// background: rgba($green, .2);
+		border: 1px solid $green;
 		transition: all 150ms ease;
 
 	}
 
-	&--active, &:hover.filter--active {
+	&--checked {
 		color: set-text-color($green, true);
 		background: $green;
 		transition: all 150ms ease;

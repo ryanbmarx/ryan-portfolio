@@ -1,5 +1,7 @@
-import fontawesome from '@fortawesome/fontawesome';
-import { faFacebook } from '@fortawesome/fontawesome-free-solid';
+// import fontawesome from '@fortawesome/fontawesome';
+// import { faFacebook } from '@fortawesome/fontawesome-free-solid';
+
+import filterPortfolio from './filter-portfolio.js';
 
 // TODO: Add smoothscroll polyfill
 
@@ -15,8 +17,10 @@ window.addEventListener('DOMContentLoaded', function(e){
 	filterButtons.forEach(f => {
 		f.addEventListener('click', function(e){
 			console.log('click');
-			if (this.classList.contains('filter--active')) this.classList.remove('filter--active');
-			else this.classList.add('filter--active');
+			if (this.classList.contains('filter--checked')) this.classList.remove('filter--checked');
+			else this.classList.add('filter--checked');
+
+			filterPortfolio();
 		})
 	})
 })

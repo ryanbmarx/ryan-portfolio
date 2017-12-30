@@ -8,7 +8,8 @@
     "build": "grunt",
     "watch": "grunt watch",
     "publish": "grunt && tarbell publish",
-    "publish: production": "grunt && tarbell publish production"
+    "publish: production": "grunt && tarbell publish production",
+    "postinstall": "pip install -r requirements.txt"
   },
   "repository": {
     "type": "git",

@@ -15,6 +15,7 @@ from github import Github # For generating projects
 
 import os #For the environment variables
 import re # regex
+import datetime
 
 blueprint = Blueprint('ryan-portfolio', __name__)
 
@@ -29,15 +30,22 @@ def generate_projects_list():
     
     repositories = []
     for repo in repos:
-        if repo.owner.login == user:
+        """
+        If the repo is owned by me and is not private
+        """
+        if repo.owner.login == user and not repo.fork:
             r = {}
-            r['id'] = repo.id
+            r['id'] = repo.name.lower()
             r['name'] = format_name(repo.name)
             r['description'] = repo.description
             r['repo_url'] = repo.html_url
             r['date_created'] = repo.created_at
-            r['date_updated'] = repo.updated_at
- 
+            r['date_updated'] = repo.updated_at if repo.updated_at != "None" else False
+            r['prod_url'] = repo.homepage if repo.homepage != "None" else False
+
+            topics_url = "https://api.github.com/repos/{}/{}/topics".format(user, r['id'])
+            print topics_url
+
             repositories.append(r)
             
     return repositories
@@ -79,6 +87,13 @@ def get_tags_list(projects):
     tag_list = list(set(tag_list))
     return tag_list
 	
+@blueprint.app_template_filter('format_date')
+def format_vote_date(date_to_format, format=False):
+    """
+    Format date based on given format string
+    """
+    print date_to_format
+    # return date_to_format.strftime(format)
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "16I7B3l2Dew220S_NwCQjTMCnTK9eCbjjlxpbEmA2fGU"

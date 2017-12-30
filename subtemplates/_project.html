@@ -1,3 +1,5 @@
+{# The basic template for the project display, using data pulled from GitHub and formatted by myself #}
+
 <div id="{{ p.id }}" class='project' {# {{ p.tags|get_tags(False) }} #}>
 	<figure class='project__thumb'>
 		<img src="img/chart.png" alt='TKTKTKTK' />
@@ -9,16 +11,20 @@
 	<dl>
 		<dt>Created: </dt>
 		<dd>{{ p.date_created }}</dd>
+		{% if p.date_updated %}
 		<dt>Updated: </dt>
-		<dd>{{ p.date_updated }}</dd>
+		<dd>{{ p.date_updated }}
+		{% endif %}
 	</dl>
 	<p>{{ p.description }}</p>
 	<ul class='project__links'>
+		{% if p.prod_url %}
 		<li>
-			<a href="{{ 'TKTKTK' }}" aria-label="Visit this graphic" target="_blank">XX
+			<a href="{{ p.prod_url }}" aria-label="Visit this graphic" target="_blank">XX
 				<span class='sr-only'>"Visit this graphic"</span>
 			</a>
 		</li>
+		{% endif %}
 		<li>
 			<a href="{{ p.repo_url }}" aria-label="Visit the GitHub repository" target="_blank">XX
 				<span class='sr-only'>"Visit the GitHub repository"</span>

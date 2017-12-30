@@ -1,13 +1,17 @@
 {# The basic template for the project display, using data pulled from GitHub and formatted by myself #}
 
-<div id="{{ p.id }}" class='project' {# {{ p.tags|get_tags(False) }} #}>
+<div id="{{ p.id }}" class='project' {# {{ p.tags|get_topic_tags(False) }} #}>
 	<figure class='project__thumb'>
 		<img src="img/chart.png" alt='TKTKTKTK' />
 	</figure>
 	<h3 class='project__name'>{{ p.name }}</h3>
+	{% if p.topics %}
 	<ul class='project__tags'>
-		{# {{ p.tags|get_tags(True) }} #} Tags TKTKTK
+		{{ p.topics|get_topic_tags(True) }}
 	</ul>
+	{% else %}
+		No tags
+	{% endif %}
 	<dl>
 		<dt>Created: </dt>
 		<dd>{{ p.date_created }}</dd>

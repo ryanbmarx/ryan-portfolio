@@ -96,6 +96,7 @@
 		</div>
 	</section>
 	<section class='section section--portfolio'>
+		{% set projects_list = generate_projects_list() %}
 		<h3 class='section__header'>My work</h3>
 		<div class='section__inner'>
 			<div class='filters'>
@@ -104,8 +105,7 @@
 				{% endfor %}
 			</div>
 		<div class='projects'>
-		{% for project in generate_projects_list()|sort(True, attribute='date_updated') %}
-			{{ project }}
+		{% for project in projects_list|sort(True, attribute='date_updated') %}
 			{% set p = project %}
 			{% include "subtemplates/_project.html" %}
 		{% endfor %}

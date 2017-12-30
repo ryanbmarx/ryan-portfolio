@@ -17,6 +17,10 @@ import os #For the environment variables
 import re # regex
 import datetime
 
+import requests # For requesting github data
+from requests.auth import HTTPBasicAuth # to request topics from github
+import json # To parse the api responses
+
 blueprint = Blueprint('ryan-portfolio', __name__)
 
 # @register_hook('preview')
@@ -30,46 +34,54 @@ def generate_projects_list():
     
     repositories = []
     for repo in repos:
-        """
-        If the repo is owned by me and is not private
-        """
+        
+        # If the repo is owned by me and is not private
         if repo.owner.login == user and not repo.fork:
-            r = {}
-            r['id'] = repo.name.lower()
-            r['name'] = format_name(repo.name)
-            r['description'] = repo.description
-            r['repo_url'] = repo.html_url
-            r['date_created'] = repo.created_at
-            r['date_updated'] = repo.updated_at if repo.updated_at != "None" else False
-            r['prod_url'] = repo.homepage if repo.homepage != "None" else False
-
-            topics_url = "https://api.github.com/repos/{}/{}/topics".format(user, r['id'])
-            print topics_url
-
-            repositories.append(r)
             
+            # Get the topics, which is in preview
+            topics_url = "https://api.github.com/repos/{}/{}/topics".format(user, repo.name.lower())
+            head = {"accept":"application/vnd.github.mercy-preview+json"}
+            authorization = HTTPBasicAuth(user,password)
+            response = requests.get(topics_url, headers=head, auth=authorization)
+            topics = json.loads(response.content)
+            topic_tags = topics["names"]
+
+            # Only pluck data if it is a featured repo
+            if "featured" in topic_tags:
+                r = {}
+                r['id'] = repo.name.lower()
+                r['name'] = format_name(repo.name)
+                r['description'] = repo.description
+                r['repo_url'] = repo.html_url
+                r['date_created'] = repo.created_at
+                r['date_updated'] = repo.updated_at if repo.updated_at != "None" else False
+                r['prod_url'] = repo.homepage if repo.homepage != "None" else False
+
+                del topic_tags[topic_tags.index('featured')] # remove "featured" from the list
+                r['topics'] = topic_tags
+
+                repositories.append(r)
     return repositories
 
 def format_name(name):
     """
     Make nicely-edited, human readable name for the project
     """
-
     return re.sub("-"," ",name).title()
 
 # @blueprint.app_template_global('get_labels')
 # @blueprint.app_template_filter()
 # @jinja2.contextfilter
-@blueprint.app_template_filter('get_tags')
-def get_tags(tags, return_html=False):
+@blueprint.app_template_filter('get_topic_tags')
+def get_topic_tags(tags, return_html=False):
     if return_html:
         retval = ""
-        for t in tags.split(','):
-            retval += "<li>#{}</li>".format(t.strip())
+        for t in tags:
+            retval += "<li>#{}</li>".format(t.lower().strip())
         # return Markup(retval)
     else:
         retval = ""
-        for t in tags.split(','):
+        for t in tags:
             retval += " data-{}".format(t.strip())
     return Markup(retval)
 

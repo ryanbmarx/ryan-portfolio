@@ -1,0 +1,30 @@
+/*
+	Uses a series of text shadows to add a stroke effect around text. It's default 
+	status will add a solid 1px border around the text.
+
+	@param text-color <optional> Can be any valid color object
+	@param stroke-color <optional> Can be any valid color object
+	@param stroke-width <optional> Any valid width for a stroke (px, em, etc.)
+	@param stroke-opacity <optional> Any float between 0 and 1. 
+	@param stroke-blur <optional> As in, e.g. the `box-shadow` property, this can be any valid blur value. 
+
+	Example usage:
+	@include text-stroke(blue, yellow, 3px, .5, 10px);
+*/
+
+
+@mixin text_stroke(
+	$text-color:black, 
+	$stroke-color:white, 
+	$stroke-width:1px, 
+	$stroke-opacity:1,
+	$stroke-blur:0){
+	  
+
+  color:$text-color;
+  text-shadow:
+	#{0-$stroke-width} #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),  
+	$stroke-width #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),
+	#{0-$stroke-width} $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity),
+	$stroke-width $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity);
+}

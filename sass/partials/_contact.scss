@@ -1,5 +1,5 @@
 .contact{
-	background: yellow;
+	background: $contact-background-color;
 	padding: #{$grid-gap} #{$grid-gap};
 
 	&__text{
@@ -7,6 +7,7 @@
 		font-weight:bold;
 		text-align: center;
 		margin: 0 0 #{$grid-gap / 2} 0;
+		color: $apricot-light;
 	}
 
 	&__social{
@@ -22,7 +23,7 @@
 		
 		a{
 			background: $isabelline;
-			color:$black;
+			color:$slate;
 			box-sizing: border-box;
 			border: 1px solid transparent;
 
@@ -37,7 +38,7 @@
 			font-size: 30px;
 
 			&:hover{
-				border-color: $black;
+				background: $apricot-light;
 			}
 
 		}

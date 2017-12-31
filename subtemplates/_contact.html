@@ -1,0 +1,27 @@
+<section id='contact' class='contact'>
+	<p class='contact__text'>Are you ready to get started? Let's talk:</p>
+	<ul class='contact__social'>
+		{% set networks = [
+			{'label':'Twitter', 'icon':'twitter', 'url':'https://www.twitter.com/ryanmarx'}, 
+			{'label':'Github', 'icon':'github', 'url':'https://github.com/ryanbmarx'}, 
+			{'label':'Instagram', 'icon':'instagram', 'url':'https://www.instagram.com/ryanmarx/'}, 
+			{'label':'LinkedIn', 'icon':'linkedin', 'url':'https://www.linkedin.com/in/ryanbmarx/'}, 
+			]
+		%}
+		{%- for n in networks %}
+			<li class='contact__link contact__link--{{n.label|lower}}'>
+				<a href="{{ n.url }}" aria-label="Visit me on {{ n.label }}" target="_blank">
+					<span class='sr-only'>Visit me on {{ n.label }}</span>
+					<i class="fab fa-{{ n.icon }}"></i>
+				</a>
+			</li>
+
+		{% endfor %}
+		<li class='contact__link contact__link--email'>
+			<a href="mailto:ryanbmarx@gmail.com" aria-label="Email me">
+				<span class='sr-only'>Email me</span>
+				<i class="fal fa-envelope"></i>
+			</a>
+		</li>
+	</ul>
+</section>

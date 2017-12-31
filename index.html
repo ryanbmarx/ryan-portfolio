@@ -39,13 +39,11 @@
 	<header id="header" class='header'>
 		{% include 'subtemplates/_nav.html' %}
 		<div class='header__text-wrapper'>
-{# 			<h1 class='header__name'>Ryan Marx</h1> #}
 			<h2>
 				<span class='header__text--data'>Visualizing data</span>
 				<span class='header__text--stories'>Telling stories</span>
 				<span class='header__text--experiences'>Creating experiences</span>
 			</h2>
-
 		</div>
 	</header>
 	<section id="about" class='section section--about-me'>
@@ -93,6 +91,7 @@
 			</div>
 		</div>
 	</section>
+	{% include 'subtemplates/_contact.html' %}
 	<section id='work' class='section section--portfolio'>
 		{% set projects_list = generate_projects_list() %}
 		<h3 class='section__header'>My work</h3>

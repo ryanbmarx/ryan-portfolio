@@ -29,10 +29,18 @@
     "grunt-postcss": "^0.8.0",
     "grunt-sass": "^2.0.0",
     "grunt-svgstore": "^1.0.0",
-    "minifyify": "^7.3.3"
+    "minifyify": "^7.3.3",
+    "rollupify": "^0.4.0"
   },
   "browserify": {
     "debug": true
   },
-  "tribune": {}
+  "tribune": {},
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.0",
+    "@fortawesome/fontawesome-free-brands": "^5.0.2",
+    "@fortawesome/fontawesome-pro-light": "^5.0.2",
+    "@fortawesome/fontawesome-pro-regular": "^5.0.2",
+    "@fortawesome/fontawesome-pro-solid": "^5.0.2"
+  }
 }

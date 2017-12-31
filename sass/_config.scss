@@ -1,11 +1,22 @@
 // COLORS
 $black: #0a090c;
-$black-rich:#07393c;
+$slate:#07393c;
 $apricot-light: #fcd7ad;
 $isabelline:#f0edee;
 $blue-baby: #90ddf0;
 $green: #2c666e;
 $purple: #7f7caf;
+
+$colors:(
+	black: #0a090c,
+	black-rich:#07393c,
+	apricot-light: #fcd7ad,
+	isabelline:#f0edee,
+	blue-baby: #90ddf0,
+	green: #2c666e,
+	purple: #7f7caf
+);
+
 
 // BREAKPOINTS
 $phablet-min-width:450px;
@@ -16,8 +27,16 @@ $desktop-min-width:850px;
 $grid-gap: 30px; // basic spacing/margin unit.
 
 // TEXT
-$sans-serif-fonts: 'Breul Grotesk B', sans-serif;
-$display-fonts: 'Breul Grotesk B', sans-serif;
+
+/*
+font-family: 'Breul Grotesk B Extra Light'
+font-family: 'Breul Grotesk B Light'
+font-family: 'Breul Grotesk B Semi Light'
+font-family: 'Breul Grotesk B Thin'
+
+*/
+$sans-serif-fonts: 'BreulGroteskBLight', sans-serif;
+$display-fonts: 'BreulGroteskBBold', sans-serif;
 $serif-fonts: 'Times New Roman', serif;
 
 // SCAFFOLDING
@@ -35,3 +54,9 @@ $bio-width: 320px;
 $work-history-width: 260px;
 $rating-min-width: 200px;
 $about-me-content-width: $bio-width + $work-history-width + $rating-min-width;
+
+// CONTACT ME
+$contact-background-color: $slate;
+
+// NAV
+$nav-background-color:$black;

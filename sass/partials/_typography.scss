@@ -1,0 +1,52 @@
+// $base_url: "/wp-content/themes/DiviNorwexChild/fonts/";
+$base_url: "../fonts/";
+$display-font-light: "BreulGroteskB-Light";
+$display-font-bold: "BreulGroteskB-Bold";
+$display-font-black: "BreulGroteskB-Black";
+
+// $display-font-roman: "lunchbox-webfont";
+
+
+/* Webfont: BreulGroteskB-Light */
+@font-face {
+    font-family: 'BreulGroteskBLight';
+    src: local('#{$display-font-light}');
+    src: url('#{$base_url}#{$display-font-light}.eot'); /* IE9 Compat Modes */
+    src: url('#{$base_url}#{$display-font-light}?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('#{$base_url}#{$display-font-light}.woff') format('woff'), /* Modern Browsers */
+         url('#{$base_url}#{$display-font-light}.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('#{$base_url}#{$display-font-light}.svg##{$display-font-light}') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+	unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'BreulGroteskBBold';
+    src: local('#{$display-font-bold}');
+    src: url('#{$base_url}#{$display-font-bold}.eot'); /* IE9 Compat Modes */
+    src: url('#{$base_url}#{$display-font-bold}?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('#{$base_url}#{$display-font-bold}.woff') format('woff'), /* Modern Browsers */
+         url('#{$base_url}#{$display-font-bold}.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('#{$base_url}#{$display-font-bold}.svg##{$display-font-bold}') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+	unicode-range: U+000-5FF; /* Latin glyphs */
+}
+
+@font-face {
+    font-family: 'BreulGroteskBBlack';
+    src: local('#{$display-font-black}');
+    src: url('#{$base_url}#{$display-font-black}.eot'); /* IE9 Compat Modes */
+    src: url('#{$base_url}#{$display-font-black}?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('#{$base_url}#{$display-font-black}.woff') format('woff'), /* Modern Browsers */
+         url('#{$base_url}#{$display-font-black}.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('#{$base_url}#{$display-font-black}.svg##{$display-font-black}') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+	unicode-range: U+000-5FF; /* Latin glyphs */
+}
+

@@ -1,6 +1,7 @@
 
 // ---- VARIABLES HERE ---------------------------------------------
 @import 'config';
+@import "partials/typography";
 
 
 // ---- FUNCTIONS HERE ---------------------------------------------
@@ -20,7 +21,6 @@
 
 
 // ---- RESETS & UTILS ---------------------------------------------
-
 
 body{
 	margin: 0;
@@ -47,6 +47,28 @@ ul, ol{
 p {
 	font: 18px/1.5em #{$serif-fonts}, serif;
 	margin:0 0 $grid-gap 0;
+
+	&:last-of-type{
+		margin-bottom: 0;
+	}
+}
+
+h4{
+	font: 18px/1.3em #{$display-fonts};
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
+
+h5{
+	@extend %sans-serif;
+	font-weight: bold;
+	margin: 0 0 #{$grid-gap / 2} 0;
+	text-transform: uppercase
+}
+
+.exploded{
+	font-family: $display-fonts;
+	font-size: 2em;
+	font-weight:bold;
 }
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -109,7 +131,7 @@ p {
 
 @media all and (min-width: $desktop-min-width){
 	// ONLY CHANGES FOR DESKTOPS
-		.section__inner{
-		margin: 0 0 0 #{$section-label-padding + $section-label-width};
-	}
+	// 	.section__inner{
+	// 	margin: 0 0 0 #{$section-label-padding + $section-label-width};
+	// }
 }

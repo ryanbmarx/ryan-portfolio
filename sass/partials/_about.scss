@@ -22,10 +22,14 @@ $bar-height: 10px;
 	justify-content: space-between;
 	align-items: center;
 	
+	&:last-child{
+		margin-bottom:0;
+	}
+
 	&__label{
 		@extend %sans-serif;
 		margin: 0 10px 0 0;
-		text-transform:uppercase;
+		// text-transform:uppercase;
 		width: 100px;
 	}
 

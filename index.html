@@ -1,3 +1,20 @@
+{% macro squares() %}
+	<div class='squares'>
+		{% set colors = [
+				{"name":"black", "hex": " #0a090c"},
+				{"name":"black-rich", "hex": "#07393c"},
+				{"name":"apricot-light", "hex": " #fcd7ad"},
+				{"name":"isabelline", "hex": "#f0edee"},
+				{"name":"blue-baby", "hex": " #90ddf0"},
+				{"name":"green", "hex": " #2c666e"},
+				{"name":"purple", "hex": "#7f7caf"}
+		] %}
+		{% for color in colors %}
+			<div class='square--{{ color.name }}' style="width: 150px; height: 150px; background: {{ color.hex }}"></div>
+		{%endfor%}
+	</div>
+{% endmacro %}
+
 {% macro rating(r, label) %}
 	<dl class='rating'>
 		<dt class='rating__label'>{{ label }}</dt>
@@ -33,6 +50,8 @@
 	{# structured data #}
 	{# social #}
 
+
+
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
@@ -47,11 +66,10 @@
 		</div>
 	</header>
 	<section id="about" class='section section--about-me'>
-		<h3 class='section__header'>About me</h3>
+		<h3 class='section__header sr-only'>About me</h3>
 		<div class='section__inner'>
 			<div class='bio'>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequatur, corporis. Voluptate asperiores illum error amet consequatur dolores, inventore molestias quibusdam reiciendis voluptatum consequuntur, ducimus nulla fugit distinctio quod a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nam nobis rem tempore. Porro quia, sunt, doloremque impedit expedita eos? Saepe laborum laudantium quibusdam aliquam itaque voluptates minima fugit consequatur!</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequatur, corporis. Voluptate asperiores illum error amet consequatur dolores, inventore molestias quibusdam reiciendis voluptatum consequuntur, ducimus nulla fugit distinctio quod a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nam nobis rem tempore. Porro quia, sunt, doloremque impedit expedita eos? Saepe laborum laudantium quibusdam aliquam itaque voluptates minima fugit consequatur!</p>
+				{{ bio|markdown }}
 			</div>
 			<div id='history' class='work-history'>
 				<h4>Work history</h4>
@@ -84,17 +102,21 @@
 				</div>
 			</div>
 			<div id='skills' class='skills'>
-				<h4>Skills</h4>
-				{% for skill in skills %}
-					{{ rating_bar(skill.rating, skill.name)}}
+				{% for cat in skill_categories|sort(attribute="order") %}
+					<h4>{{ cat.label }} skills</h4>
+					{% for skill in skills|sort(True, attribute="rating") if skill.category == cat.slug %}
+						{{ rating_bar(skill.rating, skill.name)}}
+					{% endfor %}
 				{% endfor %}
+
 			</div>
 		</div>
 	</section>
 	{% include 'subtemplates/_contact.html' %}
 	<section id='work' class='section section--portfolio'>
 		{% set projects_list = generate_projects_list() %}
-		<h3 class='section__header'>My work</h3>
+		<h3 class='section__header sr-only'>My work</h3>
+		<p><span class='exploded'>My work</span></p>
 		<div class='section__inner'>
 			<div class='filters'>
 				{% for t in get_tags_list(projects_list) %}
@@ -110,6 +132,7 @@
 	</div>
 	</section>
 	<footer>FOOTY</footer>
+	{{ squares() }}
 	<script type="text/javascript" src="js/app.min.js"></script>
 </body>
 </html>

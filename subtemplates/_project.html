@@ -1,6 +1,5 @@
 {# The basic template for the project display, using data pulled from GitHub and formatted by myself #}
-
-<div id="{{ p.id }}" class='project' {# {{ p.tags|get_topic_tags(False) }} #}>
+<div id="{{ p.id }}" class='project project--visible' {{ p.topics|get_topic_tags(False) }}>
 	<figure class='project__thumb'>
 		<img src="img/chart.png" alt='TKTKTKTK' />
 	</figure>
@@ -12,26 +11,24 @@
 	{% else %}
 		No tags
 	{% endif %}
-	<dl>
-		<dt>Created: </dt>
-		<dd>{{ p.date_created }}</dd>
-		{% if p.date_updated %}
-		<dt>Updated: </dt>
-		<dd>{{ p.date_updated }}
-		{% endif %}
-	</dl>
 	<p>{{ p.description }}</p>
+	<dl class='project__date'>
+		<dt>Created: </dt>
+		<dd>{{ p.date_created.strftime('%b. %-d, %Y') }}</dd>
+	</dl>
 	<ul class='project__links'>
 		{% if p.prod_url %}
-		<li>
-			<a href="{{ p.prod_url }}" aria-label="Visit this graphic" target="_blank">XX
-				<span class='sr-only'>"Visit this graphic"</span>
+		<li class='project__link--prod'>
+			<a href="{{ p.prod_url }}" aria-label="Visit this graphic" target="_blank">
+				<span class='sr-only'>"Visit this graphic live and in the wild"</span>
+				<i class="fal fa-external-link"></i>
 			</a>
 		</li>
 		{% endif %}
-		<li>
-			<a href="{{ p.repo_url }}" aria-label="Visit the GitHub repository" target="_blank">XX
-				<span class='sr-only'>"Visit the GitHub repository"</span>
+		<li class='project__link--github'>
+			<a href="{{ p.repo_url }}" aria-label="Visit the GitHub repository" target="_blank">
+				<span class='sr-only'>"Visit this project on my GitHub"</span>
+				<i class="fab fa-github"></i>
 			</a>
 		</li>
 	</ul>

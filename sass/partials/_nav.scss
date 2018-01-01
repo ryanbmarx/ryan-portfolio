@@ -1,43 +1,41 @@
 .nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
+	font-family: $display-fonts;
+	// position: fixed;
+	// top: 0;
+	// left: 0;
+	// width: 100%;
 
 	padding: 10px 15px;
 	background: rgba($nav-background-color, .9);
 	z-index:1000;
 	box-sizing:border-box;
 
-	display:flex;
-	justify-content: space-between;
-	align-items: center;
-
 	color: white;
-	font: 19px/1em #{$display-fonts};
-	font-weight: bold;
+	// font: 19px/1em #{$display-fonts};
+	// font-weight: bold;
 
 	&__name{
+		font-size: 20px;
 		margin: 0;
+		text-align: center;
 	}
 
 	&__links{
-		flex:1; // take all the space it needs from the nav
+		@include responsive-font(2vw, 14px, 19px);
+
+		// flex:1; // take all the space it needs from the nav
 
 		// Evenly space it's nav links
 		display:flex;
-		justify-content: flex-end;
+		justify-content: center;
 		align-items: center;
 	}
+	
+	.nav__link--about{display:none;} // there is one too many links for such small widths
 
 	&__link{
-		// margin-right: 10px;
-		&:last-child{
-			// margin-right: 0;
-		}
-
+		flex: 1;
 		a{
-			// @include text-stroke($stroke-opacity:.5, $stroke-color:$nav-background-color);
 			text-decoration: none;
 			color: inherit;
 			padding: 10px;
@@ -72,3 +70,40 @@
 
 }
 
+
+
+// @media all and (min-width: $phablet-min-width){
+// 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS
+// }
+
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+
+	.nav{
+		// Activate sticky mode
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+
+		display:flex;
+		justify-content: space-between;
+		align-items: center;
+		
+		&__name{ font-size: 30px; }
+		
+		.nav__link--about{display:block;} // Now that we have room, show this one.
+		
+		&__links{
+			flex:1; // take all the space it needs from the nav
+			justify-content: flex-end; // send nav links to far right
+			max-width: 400px;
+		}
+	}	
+	
+}
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+	.nav__name{ font-size: 35px; }
+}

@@ -6,8 +6,10 @@ module.exports = function(grunt) {
   // You'll also have to install them using a command similar to:
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
-    //'jquery',
-    //'underscore'
+    "@fortawesome/fontawesome-pro-solid",
+    "@fortawesome/fontawesome-pro-regular",
+    "@fortawesome/fontawesome-pro-light",
+    "@fortawesome/fontawesome-free-brands"
   ];
 
   config.browserify = {

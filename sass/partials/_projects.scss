@@ -83,12 +83,6 @@
 	&__link{
 		&--prod{
 			@extend %project__link;
-			// background: $green;
-
-			// a{
-			// 	font-size: $project-link-height / 2;
-			// 	color:white;
-			// }
 		}
 
 		&--github{
@@ -98,7 +92,6 @@
 				background: $isabelline;
 				font-size: 42px;
 				color:$green;
-				// border-color:$green;
 			}
 		}
 	}
@@ -109,8 +102,14 @@
 		justify-content: center;
 
 		dd, dt{
+			@extend %label;
 			margin:0;
 			padding:0;
+		}
+
+		dt:after{
+			content: ":";
+			margin-right: 5px;
 		}
 	}
 	&__tags {

@@ -52,6 +52,10 @@ $bar-height: 10px;
 	}
 }
 
+.bio{
+	margin-bottom: $grid-gap;
+}
+
 .timeline{
 	position:relative;
 	height: 100%; // extend full height of grid-item container
@@ -64,6 +68,9 @@ $bar-height: 10px;
 	justify-content:flex-start;
 	align-content: flex-start;
 	align-items: stretch;
+
+	min-height: 400px; // Keeps this all working on mobile (which is not css grid)
+	margin-bottom: $grid-gap;
 
 	.timeline__lines{
 		width: 10px;
@@ -163,10 +170,13 @@ $bar-height: 10px;
 		grid-template-rows: auto auto;
 		grid-gap: $grid-gap;
 	}
-
+	.timeline{
+		margin-bottom: 0;
+	}
 	.bio{
 		grid-row: 1;
 		grid-column: 1 / -1;
+		margin-bottom: 0;
 	}
 
 	.skills{

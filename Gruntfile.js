@@ -34,7 +34,7 @@ module.exports = function(grunt) {
               "presets": [
                 ["env", {
                   "targets": {
-                    "browsers": ["last 2 versions", "ie >= 11"]
+                    "browsers": ["last 2 versions", "ie >= 12"]
                   }
                 }]
               ]

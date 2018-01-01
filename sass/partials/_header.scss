@@ -89,7 +89,7 @@
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 	.header{
-		background: #eee url(../header-background--tablet.jpg) center right no-repeat;
+		background: #eee url(../img/header-background--tablet.jpg) center right no-repeat;
 		height: 100vh;
 		margin-bottom: 0;
 		text-align: left;
@@ -119,6 +119,6 @@
 @media all and (min-width: $desktop-min-width){
 	// ONLY CHANGES FOR DESKTOPS
 	.header{
-		background: #eee url(../header-background--desktop.jpg) center right no-repeat;
+		background: #eee url(../img/header-background--desktop.jpg) center right no-repeat;
 	}
 }

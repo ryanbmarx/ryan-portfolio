@@ -79,7 +79,6 @@ def get_topic_tags(tags, return_html=False):
         for t in tags:
             retval += "<li>#{}</li>".format(t.lower().strip())
     else:
-        print tags
         for t in tags:
             retval += " data-{}".format(t.strip())
     return Markup(retval)

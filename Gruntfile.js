@@ -62,8 +62,9 @@ module.exports = function(grunt) {
               map: 'vendor.min.js.map',
               output: './js/vendor.min.js.map'
             }
-          ]
+          ],
         ],
+        transform: ['rollupify'],
         require: VENDOR_LIBRARIES
       }
     };

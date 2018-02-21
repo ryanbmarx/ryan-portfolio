@@ -3,33 +3,35 @@
 	<figure class='project__thumb'>
 		<img src="img/chart.png" alt='TKTKTKTK' />
 	</figure>
-	<h3 class='project__name'>{{ p.name }}</h3>
-	{% if p.topics %}
-	<ul class='project__tags'>
-		{{ p.topics|get_topic_tags(True) }}
-	</ul>
-	{% else %}
-		No tags
-	{% endif %}
-	<p>{{ p.description }}</p>
-	<dl class='project__date'>
-		<dt>Created</dt>
-		<dd>{{ p.date_created.strftime('%b. %-d, %Y') }}</dd>
-	</dl>
-	<ul class='project__links'>
-		{% if p.prod_url %}
-		<li class='project__link--prod'>
-			<a href="{{ p.prod_url }}" aria-label="Visit this graphic" target="_blank">
-				<span class='sr-only'>"Visit this graphic live and in the wild"</span>
-				<i class="fal fa-external-link"></i>
-			</a>
-		</li>
+	<div class='project__container'>
+		<h3 class='project__name'>{{ p.name }}</h3>
+		{% if p.topics %}
+		<ul class='project__tags'>
+			{{ p.topics|get_topic_tags(True) }}
+		</ul>
+		{% else %}
+			No tags
 		{% endif %}
-		<li class='project__link--github'>
-			<a href="{{ p.repo_url }}" aria-label="Visit the GitHub repository" target="_blank">
-				<span class='sr-only'>"Visit this project on my GitHub"</span>
-				<i class="fab fa-github"></i>
-			</a>
-		</li>
-	</ul>
+		<p>{{ p.description|markdown }}</p>
+		<dl class='project__date'>
+			<dt>Created</dt>
+			<dd>{{ p.date_created.strftime('%b. %-d, %Y') }}</dd>
+		</dl>
+		<ul class='project__links'>
+			{% if p.prod_url %}
+			<li class='project__link--prod'>
+				<a href="{{ p.prod_url }}" aria-label="Visit this graphic" target="_blank">
+					<span class='sr-only'>"Visit this graphic live and in the wild"</span>
+					<i class="fal fa-external-link"></i>
+				</a>
+			</li>
+			{% endif %}
+			<li class='project__link--github'>
+				<a href="{{ p.repo_url }}" aria-label="Visit the GitHub repository" target="_blank">
+					<span class='sr-only'>"Visit this project on my GitHub"</span>
+					<i class="fab fa-github"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>

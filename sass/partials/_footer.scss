@@ -1,0 +1,10 @@
+.section--footer{
+		background: $contact-background-color;
+}
+
+.footer{
+	&__copyright{
+		text-align:center;
+		font: 14px / 1.3em $sans-serif-fonts;
+	}
+}

@@ -1,7 +1,7 @@
 {# The basic template for the project display, using data pulled from GitHub and formatted by myself #}
 <div id="{{ p.id }}" class='project project--visible' {{ p.topics|get_topic_tags(False) }}>
 	<figure class='project__thumb'>
-		<img src="img/chart.png" alt='TKTKTKTK' />
+		<img src="{{ p.thumbnail }}" alt='TKTKTKTK' />
 	</figure>
 	<div class='project__container'>
 		<h3 class='project__name'>{{ p.name }}</h3>
@@ -12,11 +12,17 @@
 		{% else %}
 			No tags
 		{% endif %}
-		<p>{{ p.description|markdown }}</p>
+		{{ p.description|trim|markdown }}
 		<dl class='project__date'>
 			<dt>Created</dt>
 			<dd>{{ p.date_created.strftime('%b. %-d, %Y') }}</dd>
 		</dl>
+		{% if p.date_updated %}
+		<dl class='project__date'>
+			<dt>Updated</dt>
+			<dd>{{ p.date_updated.strftime('%b. %-d, %Y') }}</dd>
+		</dl>
+		{% endif %}
 		<ul class='project__links'>
 			{% if p.prod_url %}
 			<li class='project__link--prod'>

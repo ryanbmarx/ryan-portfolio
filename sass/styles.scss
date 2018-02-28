@@ -18,6 +18,7 @@
 @import "partials/about";
 @import "partials/nav";
 @import "partials/contact";
+@import "partials/footer";
 
 
 // ---- RESETS & UTILS ---------------------------------------------
@@ -75,8 +76,8 @@ h5{
  
 
 .section{
-	margin-bottom: $grid-gap;
-	padding: $grid-gap;
+	// margin-bottom: $grid-gap;
+	padding: $nav-height $grid-gap $grid-gap $grid-gap; // Extra height here for navigating under the sticky nav bar
 	box-sizing: border-box;
 
 	&__header{

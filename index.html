@@ -111,7 +111,9 @@
 			</div>
 		</div>
 	</section>
-	{% include 'subtemplates/_contact.html' %}
+	<section id='contact' class='section section--contact'>
+		{% include 'subtemplates/_contact.html' %}
+	</section>
 	<section id='work' class='section section--portfolio'>
 		{% set projects_list = generate_projects_list() %}
 		<h3 class='section__header sr-only'>My work</h3>
@@ -130,7 +132,10 @@
 		</div>
 	</div>
 	</section>
-	<footer>FOOTY</footer>
+	<footer class='section section--footer footer'>
+		{% include 'subtemplates/_contact.html' %}
+		<p class='footer__copyright'>© 2016 Ryan B. Marx. All rights reserved.</p>
+	</footer>
 	<script type="text/javascript" src="js/app.min.js"></script>
 </body>
 </html>

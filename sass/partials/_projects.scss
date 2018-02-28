@@ -157,6 +157,8 @@
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+	.project__name{ font-size:30px; }	
+	.project__tags{ font-size:18px; }	
 }
 
 @media all and (min-width: $desktop-min-width){

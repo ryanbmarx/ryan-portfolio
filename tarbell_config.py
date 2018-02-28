@@ -23,6 +23,39 @@ import json # To parse the api responses
 
 blueprint = Blueprint('ryan-portfolio', __name__)
 
+
+def get_date_created(user, password, repo_id, get_first=False):
+    # https://api.github.com/repos/ryanbmarx/shooting-homicide-victims/commits
+    
+    topics_url = "https://api.github.com/repos/{}/{}/commits".format(user, repo_id)
+    head = {"accept":"application/vnd.github.mercy-preview+json"}
+    authorization = HTTPBasicAuth(user,password)
+    response = requests.get(topics_url, headers=head, auth=authorization)
+    commits = json.loads(response.content)
+    
+    commit_index = len(commits) - 1 if get_first else 0 #If we want the first commit, then get it. Otherwise get most recent
+
+    first_commit_date = commits[commit_index]['commit']['author']['date']
+    # print "------------------------------"
+    # print first_commit_date, repo_id, 
+    return datetime.datetime.strptime(first_commit_date, "%Y-%m-%dT%H:%M:%SZ")
+
+def check_for_thumbnail(repo_name_str):
+    """
+        Takes a repo ID, and formats it to be filename compatible.
+        It then checks for both a jpeg, jpg and png locally, returning 
+        the version it found. Otherwise it returns the palceholder.
+    """
+    retval = repo_name_str.lower().strip().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
+    if os.path.isfile('img/thumbs/' + retval + ".jpg"):
+        return "{}.jpg".format(retval)
+    elif os.path.isfile('img/thumbs/' + retval + ".jpeg"):
+        return "{}.jpeg".format(retval)
+    elif os.path.isfile('img/thumbs/' + retval + ".png"):
+        return "{}.png".format(retval)
+    else:
+        return "img/missing.png"
+
 # @register_hook('preview')
 @blueprint.app_template_global('generate_projects_list')
 def generate_projects_list():
@@ -51,15 +84,14 @@ def generate_projects_list():
                 r = {}
                 r['id'] = repo.name.lower()
                 r['name'] = format_name(repo.name)
-                r['description'] = repo.description
+                r['description'] = repo.description.strip()
                 r['repo_url'] = repo.html_url
-                r['date_created'] = repo.created_at
-                r['date_updated'] = repo.updated_at if repo.updated_at != "None" else False
+                r['date_created'] = get_date_created(user, password, repo.name.lower(), get_first=True)
+                r['date_updated'] = get_date_created(user, password, repo.name.lower(), get_first=False)
                 r['prod_url'] = repo.homepage if repo.homepage != "None" else False
-
+                r['thumbnail'] = check_for_thumbnail(repo.name.lower())
                 del topic_tags[topic_tags.index('featured')] # remove "featured" from the list
                 r['topics'] = topic_tags
-
                 repositories.append(r)
     return repositories
 
@@ -101,7 +133,7 @@ def get_tags_list(projects):
 SPREADSHEET_KEY = "16I7B3l2Dew220S_NwCQjTMCnTK9eCbjjlxpbEmA2fGU"
 
 # Exclude these files from publication
-EXCLUDES = ['*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js', 'subtemplates']
+EXCLUDES = ['*.md', 'img/_archive','requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js', 'subtemplates']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4

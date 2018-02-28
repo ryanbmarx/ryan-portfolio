@@ -24,21 +24,48 @@ import json # To parse the api responses
 blueprint = Blueprint('ryan-portfolio', __name__)
 
 
-def get_date_created(user, password, repo_id, get_first=False):
+def get_date_created(user, password, repo_id):
     # https://api.github.com/repos/ryanbmarx/shooting-homicide-victims/commits
-    
-    topics_url = "https://api.github.com/repos/{}/{}/commits".format(user, repo_id)
-    head = {"accept":"application/vnd.github.mercy-preview+json"}
+    """
+    Takes a repo id and returns a two-item list [first, most recent]
+    """
+
+    topics_url = "https://api.github.com/repos/{}/{}/commits?sha=master&per_page=100".format(user, repo_id)
+    head = {
+        "accept":"application/vnd.github.mercy-preview+json"
+    }
     authorization = HTTPBasicAuth(user,password)
     response = requests.get(topics_url, headers=head, auth=authorization)
     commits = json.loads(response.content)
     
-    commit_index = len(commits) - 1 if get_first else 0 #If we want the first commit, then get it. Otherwise get most recent
+    # The most recent update always will be first in the list.
+    most_recent_commit_date = commits[0]['commit']['author']['date']
 
-    first_commit_date = commits[commit_index]['commit']['author']['date']
-    # print "------------------------------"
-    # print first_commit_date, repo_id, 
-    return datetime.datetime.strptime(first_commit_date, "%Y-%m-%dT%H:%M:%SZ")
+    if len(commits) >= 100:
+        # If we have more than one page of results, we need to grab the link
+        # to the last page. Then repeat this process to get the date if the first
+        # commit, which will be the last item on the last page.
+
+        # Start by getting the url of the last page
+        url_last = ""
+        for link in response.headers['link'].split(','):
+            url = link.split(';')
+            if "last" in url[1]:
+                url_last = url[0].strip().replace("<","").replace('>',"")
+
+        #Then make another request with this new url
+        response_last = requests.get(url_last, headers=head, auth=authorization)
+        commits_last = json.loads(response_last.content)
+        first_commit_date = commits_last[len(commits_last) - 1]['commit']['author']['date']
+    else:
+        # If we're only doing with one page of results (i.e. no link in header), then 
+        # the first commit will be the last item in the list.
+        first_commit_date = commits[len(commits) - 1]['commit']['author']['date']
+        
+    return [
+        datetime.datetime.strptime(first_commit_date, "%Y-%m-%dT%H:%M:%SZ"),
+        datetime.datetime.strptime(most_recent_commit_date, "%Y-%m-%dT%H:%M:%SZ"),
+    ]
 
 def check_for_thumbnail(repo_name_str):
     """
@@ -82,12 +109,13 @@ def generate_projects_list():
             # Only pluck data if it is a featured repo
             if "featured" in topic_tags:
                 r = {}
+                dates = get_date_created(user, password, repo.name.lower())
                 r['id'] = repo.name.lower()
                 r['name'] = format_name(repo.name)
                 r['description'] = repo.description.strip()
                 r['repo_url'] = repo.html_url
-                r['date_created'] = get_date_created(user, password, repo.name.lower(), get_first=True)
-                r['date_updated'] = get_date_created(user, password, repo.name.lower(), get_first=False)
+                r['date_created'] = dates[0]
+                r['date_updated'] = dates[1]
                 r['prod_url'] = repo.homepage if repo.homepage != "None" else False
                 r['thumbnail'] = check_for_thumbnail(repo.name.lower())
                 del topic_tags[topic_tags.index('featured')] # remove "featured" from the list

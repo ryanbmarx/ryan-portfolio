@@ -119,11 +119,11 @@
 		<h3 class='section__header sr-only'>My work</h3>
 		<p><span class='exploded'>My work</span></p>
 		<div class='section__inner'>
-			<div class='filters'>
+		{# 	<div class='filters'>
 				{% for t in get_tags_list(projects_list) %}
 				<button class='filter filter--checked' data-topic='{{ t|lower }}'>{{ t|upper }}</button>
 				{% endfor %}
-			</div>
+			</div> #}
 		<div class='projects'>
 		{% for project in projects_list|sort(True, attribute='date_updated') %}
 			{% set p = project %}

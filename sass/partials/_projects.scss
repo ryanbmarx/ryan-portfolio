@@ -1,3 +1,5 @@
+$project_horiz_width: 750px;
+
 .section--portfolio{
 	background: rgba($green, .5);
 }
@@ -50,9 +52,11 @@
 
 	margin-bottom: $grid-gap;
 
-	font: 19px/1.3em #{$display-fonts}, sans-serif;
+	font: 19px/1.6em #{$display-fonts}, sans-serif;
 	text-align:center;
 	display:none;
+
+    width: 100%;
 
 	&--visible{
 		// To organize the contents
@@ -63,26 +67,30 @@
 			// The immediate descendants of project will be flex items
 			// And we want them to lay out horizontally when there is 
 			// enough room. This should happen automatically
-			flex: 1 1 375px;
+			flex: 1 1 #{$project_horiz_width / 2};
 			// margin: 25px;
 		}
 	}
 
 	&__container{
 		box-sizing: border-box;
-		padding: $project-padding $project-padding $project-padding #{$project-padding * 2};
+		padding: $project-padding;
 	}
 
 	&__thumb{
 		margin: 0;
 		overflow:hidden;
-		width: calc(100% + #{$project-padding * 2});
-		// padding: $project-padding;
-		// margin: 0;
+		position:relative;
+		overflow:hidden;
+
+		min-height: 300px; // Need this so there is space to display the image
 
 		img{
 			width: 100%;
-			// transform: scale(1.2);
+			
+			position:absolute;
+			top: 0;
+			left:0;
 		}
 	}
 
@@ -148,7 +156,12 @@
 	}
 }
 
-
+@media all and (max-width:#{ $project_horiz_width + ($section-padding * 2)}){
+	// Disable background image ONLY on the mobile/nonside-saddle views
+	.project__thumb{
+		// max-height: 400px;
+	}
+}
 
 
 @media all and (min-width: $phablet-min-width){
@@ -158,7 +171,19 @@
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 	.project__name{ font-size:30px; }	
-	.project__tags{ font-size:18px; }	
+	.project__tags{ font-size:18px; }
+	.project__thumb {
+		min-height: 350px;
+	}	
+}
+
+@media all and (min-width: #{ $project_horiz_width + ($section-padding * 2)}){
+	// ONLY CHANGES FOR WHEN PROJECTS ARE SIDESADDLE ARRANGED
+	.project__thumb {
+		min-height: 400px;
+	}
+
+
 }
 
 @media all and (min-width: $desktop-min-width){

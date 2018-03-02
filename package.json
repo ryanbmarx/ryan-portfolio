@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "grunt",
     "watch": "grunt watch",
-    "publish": "grunt && tarbell publish",
-    "publish: production": "grunt && tarbell publish production",
+    "publish": "rm -rf _out && npm run build && tarbell generate _out",
     "postinstall": "pip install -r requirements.txt"
   },
   "repository": {

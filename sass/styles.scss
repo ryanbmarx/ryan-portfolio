@@ -77,7 +77,7 @@ h5{
 
 .section{
 	// margin-bottom: $grid-gap;
-	padding: $nav-height $grid-gap $grid-gap $grid-gap; // Extra height here for navigating under the sticky nav bar
+	padding: $nav-height $section-padding $section-padding $section-padding; // Extra height here for navigating under the sticky nav bar
 	box-sizing: border-box;
 
 	&__header{

@@ -41,12 +41,13 @@ $display-fonts: 'BreulGroteskBBold', sans-serif;
 $serif-fonts: 'Times New Roman', serif;
 
 // SCAFFOLDING
+$section-padding: $grid-gap;
 $section-label-width: 100px;
 $section-label-padding: $grid-gap / 2;
 $section-inner-max-width: 1200px;
 
 // PROJECTS
-$project-padding: $grid-gap / 2;
+$project-padding: $grid-gap;
 $project-link-width: 40px;
 $project-link-height: $project-link-width;
 

@@ -31,8 +31,7 @@ def get_thumbnail_info(image):
     """
         For SEO metadata, get and return image dimensions
     """
-    print "-------"
-    print image
+
     try:
         im = Image.open(image)
         width,height = im.size
@@ -181,7 +180,7 @@ def get_tags_list(projects):
 SPREADSHEET_KEY = "16I7B3l2Dew220S_NwCQjTMCnTK9eCbjjlxpbEmA2fGU"
 
 # Exclude these files from publication
-EXCLUDES = ['*.md', 'img/_archive','requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js', 'subtemplates']
+EXCLUDES = ['scripts', '_vault', '*.md', 'img/_archive','requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'package-lock.json', 'Gruntfile.js', 'subtemplates', 'data.json']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4

@@ -94,6 +94,10 @@ $project_horiz_width: 750px;
 		}
 	}
 
+	&__thumb--blur img{
+		filter: blur(15px);
+	}
+
 	&__name{
 		margin: 0 0 5px 0;
 	}	

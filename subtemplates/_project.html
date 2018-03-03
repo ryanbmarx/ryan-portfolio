@@ -1,6 +1,6 @@
 {# The basic template for the project display, using data pulled from GitHub and formatted by myself #}
 <div id="{{ p.id }}" class='project project--visible' {{ p.topics|get_topic_tags(False) }}>
-	<figure class='project__thumb'>
+	<figure class='project__thumb project__thumb--blur'>
 		<img src="{{ p.thumbnail }}" alt='TKTKTKTK' />
 	</figure>
 	<div class='project__container'>

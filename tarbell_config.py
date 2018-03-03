@@ -74,11 +74,11 @@ def check_for_thumbnail(repo_name_str):
         the version it found. Otherwise it returns the palceholder.
     """
     retval = repo_name_str.lower().strip().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
-    if os.path.isfile('img/thumbs/' + retval + ".jpg"):
+    if os.path.isfile('img/micro-thumbs/' + retval + ".jpg"):
         return "{}.jpg".format(retval)
-    elif os.path.isfile('img/thumbs/' + retval + ".jpeg"):
+    elif os.path.isfile('img/micro-thumbs/' + retval + ".jpeg"):
         return "{}.jpeg".format(retval)
-    elif os.path.isfile('img/thumbs/' + retval + ".png"):
+    elif os.path.isfile('img/micro-thumbs/' + retval + ".png"):
         return "{}.png".format(retval)
     else:
         return "img/missing.png"

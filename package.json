@@ -5,11 +5,12 @@
   "main": "js/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "grunt",
+    "build": "run-p build:*",
+    "build:assets": "grunt",
     "watch": "grunt watch",
     "publish": "rm -rf _out && npm run build && tarbell generate _out",
     "postinstall": "pip install -r requirements.txt",
-    "micro_thumbs": "node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs"
+    "build:micro_thumbs": "node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "grunt-sass": "^2.0.0",
     "grunt-svgstore": "^1.0.0",
     "minifyify": "^7.3.3",
+    "npm-run-all": "^4.1.2",
     "rollupify": "^0.4.0",
     "sharp": "^0.19.1"
   },

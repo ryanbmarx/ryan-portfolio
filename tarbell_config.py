@@ -21,7 +21,27 @@ import requests # For requesting github data
 from requests.auth import HTTPBasicAuth # to request topics from github
 import json # To parse the api responses
 
+from PIL import Image   # For the image sizing and dimensions
+
 blueprint = Blueprint('ryan-portfolio', __name__)
+
+
+@blueprint.app_template_filter('get_thumbnail_info')
+def get_thumbnail_info(image):
+    """
+        For SEO metadata, get and return image dimensions
+    """
+    print "-------"
+    print image
+    try:
+        im = Image.open(image)
+        width,height = im.size
+        return {
+            "width": width,
+            "height": height
+        }
+    except IOError:
+        pass
 
 
 def get_date_created(user, password, repo_id):
@@ -193,5 +213,6 @@ S3_BUCKETS = {
 # Default template variables
 DEFAULT_CONTEXT = {
     'name': 'ryan-portfolio',
-    'title': "Ryan's portfolio"
+    'title': "Ryan's portfolio",
+    "ROOT_URL": "ryanbmarx.com"
 }

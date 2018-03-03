@@ -8,7 +8,8 @@
     "build": "grunt",
     "watch": "grunt watch",
     "publish": "rm -rf _out && npm run build && tarbell generate _out",
-    "postinstall": "pip install -r requirements.txt"
+    "postinstall": "pip install -r requirements.txt",
+    "micro_thumbs": "node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs"
   },
   "repository": {
     "type": "git",

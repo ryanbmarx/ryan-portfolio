@@ -17,6 +17,34 @@ fontawesome.library.add(faExternalLink);
 // TODO: Add smoothscroll polyfill
 
 
+const inView = require('in-view');
+
+
+window.addEventListener('DOMContentLoaded', function(e){
+	
+	// lazyloading the images
+	let imageSize = "";
+	if (window.innerWidth > 800){
+		imageSize = "desktop";
+	} else if (window.innerWidth > 450){
+		imageSize = "tablet";
+	} else {
+		imageSize = "mobile";
+	}
+
+    // Let's set our lazyload offset to 500px below the viewport. 
+    inView.offset(-500);
+
+    inView('.project__thumb--blur')
+        .on('enter', el => {
+            let img = el.querySelector('img');
+            let src = img.getAttribute('src');
+            img.setAttribute('src', src.replace('micro-thumbs', 'thumbs'));
+            el.classList.remove('project__thumb--blur');
+        });
+
+
+});
 
 
 

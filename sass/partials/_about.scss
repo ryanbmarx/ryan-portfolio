@@ -176,6 +176,7 @@ $bar-height: 10px;
 		grid-template-rows: auto auto;
 		grid-gap: $grid-gap;
 	}
+
 	.timeline{
 		margin-bottom: 0;
 	}
@@ -183,6 +184,8 @@ $bar-height: 10px;
 		grid-row: 1;
 		grid-column: 1 / -1;
 		margin-bottom: 0;
+
+		columns: 2 // for this intermediate width, only
 	}
 
 	.skills{
@@ -212,6 +215,7 @@ $bar-height: 10px;
 	.bio{
 		grid-row: 1;
 		grid-column: 1;
+		columns: 1;
 	}
 
 	.skills{

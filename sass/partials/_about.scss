@@ -59,11 +59,11 @@ $bar-height: 10px;
 .timeline{
 	position:relative;
 	height: 100%; // extend full height of grid-item container
-	
+
 	// To stretch the timeline portion the full-height
 	flex: 1;
 
-	// To keep the components side-by-sie
+	// To keep the components side-by-side and stetching the whole height of the container
 	display:flex;
 	justify-content:flex-start;
 	align-content: flex-start;
@@ -72,9 +72,12 @@ $bar-height: 10px;
 	min-height: 400px; // Keeps this all working on mobile (which is not css grid)
 	margin-bottom: $grid-gap;
 
+    width: 100%; // So the text blobs in the timeline can extend the fullwidth
+
 	.timeline__lines{
 		width: 10px;
 		position:relative;
+		margin-left: $grid-gap / 2;
 	}
 
 	.timeline__line{
@@ -140,7 +143,7 @@ $bar-height: 10px;
 	.job{
 		position: absolute;
 		left: 0;
-		min-width: 200px;
+		max-width: 200px;
 
 		&--ne{ top: 0; }
 		&--nwi{ top: 20%; }
@@ -148,11 +151,14 @@ $bar-height: 10px;
 
 		&__title{
 			@extend %sans-serif;
+			display: block;
+		    margin: 0 0 5px 0;
 		}
 		&__employer{
 			@extend %sans-serif;
 			font-weight: normal;
 			font-style: italic;
+			display: block;
 		}
 	}
 }
@@ -198,7 +204,7 @@ $bar-height: 10px;
 	// ONLY CHANGES FOR DESKTOPS
 	.section--about-me .section__inner{
 		// display:grid;
-		grid-template-columns: $bio-width $work-history-width 1fr;
+		grid-template-columns: $bio-width 2fr 3fr;
 		grid-template-rows: auto;
 		// grid-gap: $grid-gap;
 	}

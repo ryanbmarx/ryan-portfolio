@@ -29,7 +29,8 @@
     "grunt-sass": "^2.0.0",
     "grunt-svgstore": "^1.0.0",
     "minifyify": "^7.3.3",
-    "rollupify": "^0.4.0"
+    "rollupify": "^0.4.0",
+    "sharp": "^0.19.1"
   },
   "browserify": {
     "debug": true
@@ -40,6 +41,7 @@
     "@fortawesome/fontawesome-free-brands": "^5.0.2",
     "@fortawesome/fontawesome-pro-light": "^5.0.2",
     "@fortawesome/fontawesome-pro-regular": "^5.0.2",
-    "@fortawesome/fontawesome-pro-solid": "^5.0.2"
+    "@fortawesome/fontawesome-pro-solid": "^5.0.2",
+    "in-view": "^0.6.1"
   }
 }

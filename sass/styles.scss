@@ -87,30 +87,12 @@ h5{
 		overflow:hidden;
 		margin-bottom: $grid-gap;
 		
+		text-align: center;
+	    align-self: center; // For when the header is in a flex or grid container
 		
-
-		&:before{
-			content:"";
-			position: absolute;
-			top:0;
-			left: #{$section-label-width + $section-label-padding};
-			background: $black;
-			width: 1px;
-			height: 100%;
-
-		}
-
-		&:after{
-			content:"";
-			position: absolute;
-			top: 50%;
-			left: #{$section-label-width + $section-label-padding};
-			transform: translate(0, -50%);
-			background: $black;
-			height: 1px;
-			width: 100%;
-
-		}
+		font-family: $display-fonts;
+		font-size: 2em;
+		font-weight:bold;
 	
 	}
 

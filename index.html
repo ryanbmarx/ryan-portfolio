@@ -38,16 +38,22 @@
 	</dl>
 {% endmacro %}
 
+{% set url_canonical = "http://www.ryanbmarx.com/index.html" %}
+{% set description = "Ryan Marx tells stories and creates experiences online" %}
+{% set thumbnail = "http://ryanbmarx.com/img/header-background--tablet.jpg" %}
+{% set dimensions = "img/header-background--tablet.jpg"|get_thumbnail_info %}
+{% set thumbnail_alt = "Ryan Marx at work" %}
 
 <!DOCTYPE html>
 <html>
 <head>
+	{# Google analytics #}
 	{% include 'subtemplates/_google-analytics.html' %}
 	<title>DataViz and Front-End | Ryan B. Marx</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{# Google analytics #}
+	
 	{# structured data #}
 	{# social #}
 
@@ -60,18 +66,49 @@
 
 	<script type="text/javascript" src='js/vendor.min.js'></script>
 
+	<link rel="canonical" type="text/css" href="{{ url_canonical }}">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+	{% block twitter scoped%}
+	    <meta name="twitter:card" content="summary_large_image">
+	    <meta name="twitter:site" content="@ryanmarx" />
+	    <meta name="twitter:title" content="{{ page_title }}" />
+	    <meta name="twitter:description" content="{{ description }}" />
+		<meta name="twitter:image" content="{{ thumbnail }}" />
+	    <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />
+	    <meta name="twitter:creator" content="@ryanmarx" />
+	{% endblock twitter %}
+
+	{% block opengraph scoped %}
+	    <meta property="og:url" content="{{ url_canonical }}" />
+	    <meta property="og:type" content="article" /> 
+	    <meta property="og:title" content="{{ page_title }}" />
+	    <meta property="og:description" content="{{ shareline }}" />
+	    <meta property="og:image" content="{{ thumbnail }}" />
+	    <meta name="og:image:alt" content="{{ thumbnail_alt }}" />
+	    <meta name="og:image:height" content="{{ dimensions.height }}px" />
+	    <meta name="og:image:width" content="{{ dimensions.width }}px" />
+	{% endblock opengraph %}
+
+	{% block structured_data_meta scoped %}
+	    {# METS/STRUCTURED DATA #}
+	    <meta name="description" content="{{ description }}" />
+	    <meta name="keywords" content="TK" />
+	    <meta name="author" content="Ryan Marx" />
+	{% endblock structured_data_meta %}
+
+
 </head>
 <body>
 	{% include 'subtemplates/_header.html' %}
 	<section id="about" class='section section--about-me'>
-		<h3 class='section__header sr-only'>About me</h3>
+		<h1 class='section__header sr-only'>About me</h1>
 		<div class='section__inner'>
 			<div class='bio'>
 				{{ bio|markdown }}
 			</div>
 			<div id='history' class='work-history'>
-				<h4>Work history</h4>
+				<h2 class='section__header'>Work history</h2>
 				<div class='timeline'>
 					<div class='timeline__labels'>
 						<span class='timeline__label'>2002</span>
@@ -102,7 +139,7 @@
 			</div>
 			<div id='skills' class='skills'>
 				{% for cat in skill_categories|sort(attribute="order") %}
-					<h4>{{ cat.label }} skills</h4>
+					<h2 class='section__header'>{{ cat.label }} skills</h2>
 					{% for skill in skills|sort(True, attribute="rating") if skill.category == cat.slug %}
 						{{ rating_bar(skill.rating, skill.name)}}
 					{% endfor %}
@@ -116,8 +153,8 @@
 	</section>
 	<section id='work' class='section section--portfolio'>
 		{% set projects_list = generate_projects_list() %}
-		<h3 class='section__header sr-only'>My work</h3>
-		<p><span class='exploded'>My work</span></p>
+		<h1 class='section__header'>My work</h1>
+		{# <p><span class='exploded'>My work</span></p> #}
 		<div class='section__inner'>
 		{# 	<div class='filters'>
 				{% for t in get_tags_list(projects_list) %}

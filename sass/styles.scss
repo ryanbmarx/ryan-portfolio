@@ -85,7 +85,7 @@ h5{
 		font: 23px/1em #{$display-fonts}, sans-serif;
 		font-weight: bold;
 		overflow:hidden;
-		margin-bottom: $grid-gap;
+		margin: 0 0 $grid-gap 0;
 		
 		text-align: center;
 	    align-self: center; // For when the header is in a flex or grid container

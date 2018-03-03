@@ -66,8 +66,12 @@ $bar-height: 10px;
 	// To keep the components side-by-side and stetching the whole height of the container
 	display:flex;
 	justify-content:flex-start;
-	align-content: flex-start;
+	// align-content: flex-start;
 	align-items: stretch;
+
+	// Keeps it mostly centered on mobile, not shoved way to one side.
+    max-width: 320px;
+    margin: auto;
 
 	min-height: 400px; // Keeps this all working on mobile (which is not css grid)
 	margin-bottom: $grid-gap;
@@ -106,7 +110,7 @@ $bar-height: 10px;
 
 	.timeline__labels{
 		position:relative;
-		// display:none;
+		min-height: inherit; // So it can have height on mobile
 		height: 100%;
 		width: 40px;
 	}
@@ -179,6 +183,7 @@ $bar-height: 10px;
 
 	.timeline{
 		margin-bottom: 0;
+		max-width: none; // So it fills space regardless of size.
 	}
 	.bio{
 		grid-row: 1;

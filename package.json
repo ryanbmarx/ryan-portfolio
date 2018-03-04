@@ -8,14 +8,14 @@
     "build": "run-p build:*",
     "build:assets": "grunt",
     "watch": "grunt watch",
-    "publish": "rm -rf _out && npm run build && tarbell generate _out && run-p upload:*",
+    "publish": "rm -rf _out && npm run build && tarbell generate _out && npm run upload && rm -rf _out",
     "postinstall": "pip install -r requirements.txt",
     "build:micro_thumbs": "node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs",
-    "upload:index": "node scripts/upload.js index.html"
+    "upload": "node scripts/upload-with-sftp-upload.js _out"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ryanbmarx/ryan-portfolio"
   },
   "keywords": [],
   "author": "Chicago Tribune News Applications",
@@ -34,7 +34,7 @@
     "minifyify": "^7.3.3",
     "npm-run-all": "^4.1.2",
     "rollupify": "^0.4.0",
-    "sftp-promises": "^1.5.2",
+    "sftp-upload": "^1.0.0",
     "sharp": "^0.19.1"
   },
   "browserify": {

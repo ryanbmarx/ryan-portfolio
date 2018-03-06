@@ -26,6 +26,7 @@
 		font-size: 30px;
 		margin: 0;
 		text-align: left;
+	    transform: translate(0,.13em); // This font has a weird x-height which necessitates this little tweak
 	}
 
 	&__links{

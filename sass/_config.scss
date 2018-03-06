@@ -62,6 +62,13 @@ $about-me-content-width: $bio-width + $work-history-width + $rating-min-width;
 // CONTACT ME
 $contact-background-color: $slate;
 
-// NAV
+// NAV & HAMBURGER
 $nav-background-color:$black;
 $nav-height:60px;
+$nav-transition-time: 200ms;
+
+$hamburger-nav-height: 30px;
+$hamburger-nav-width: 30px;
+$hamburger-nav-color: white;
+$hamburger-bar-height: 3px;
+$hamburger-border-radius: 3px;

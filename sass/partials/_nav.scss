@@ -1,9 +1,5 @@
 .nav {
 	font-family: $display-fonts;
-	// position: fixed;
-	// top: 0;
-	// left: 0;
-	// width: 100%;
 
 	padding: 10px 15px;
 	background: rgba($nav-background-color, .9);
@@ -11,99 +7,128 @@
 	box-sizing:border-box;
 
 	color: white;
-	// font: 19px/1em #{$display-fonts};
-	// font-weight: bold;
+
+	// To juggle the name and hamburger
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
 	&__name{
-		font-size: 20px;
+		font-size: 30px;
 		margin: 0;
-		text-align: center;
+		text-align: left;
 	}
 
 	&__links{
-		@include responsive-font(2vw, 14px, 19px);
-
-		// flex:1; // take all the space it needs from the nav
 
 		// Evenly space it's nav links
-		display:flex;
-		justify-content: center;
-		align-items: center;
+		display:block;
+
+		position: absolute;
+		width: 100%;
+		background: rgba(#222, .95);
+		height: 100vh;
+		padding: #{$grid-gap / 2} 0;
+		top: $nav-height;
+		left: -100%;
+		opacity: 0;
+		transition: all $nav-transition-time ease;
 	}
-	
-	.nav__link--about{display:none;} // there is one too many links for such small widths
 
 	&__link{
 		flex: 1;
 		a{
+			font-size:28px;
+			display:block;
 			text-decoration: none;
 			color: inherit;
-			padding: 10px;
+			padding: 12px;
 			transition: background 150ms ease;
 			border-radius: 5px;
 			position:relative;
-			
-			&:after{
-				transition: opacity 150ms ease;
-				opacity: 0;
-				content:"";
-				display:block;
-				width: 100%;
-				height: 15px;
-				background:$apricot-light;
-				position: absolute;
-				top: 50%;
-				left: 0;
-				z-index: -1;
-				transform: translate(0, -53%) skew(9deg) rotate(-2deg);
-			}
-
-			&:hover{
-				color: $nav-background-color;
-				&:after{
-					transition: opacity 100ms ease;
-					opacity: 1;
-				}
-			}
 		}
 	}
 
 }
 
-
+// Open when next to an open hamburger button
+#hamburger.open + .nav__links{
+	left: 0;
+	opacity: 1;
+	transition: all $nav-transition-time ease;
+}
 
 // @media all and (min-width: $phablet-min-width){
-// 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS
-// }
+	// 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS
+	// }
 
-@media all and (min-width: $tablet-min-width){
-	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+	@media all and (min-width: $tablet-min-width){
+		// ONLY CHANGES FOR TABLETS + DESKTOPS	
 
-	.nav{
-		// Activate sticky mode
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
+		.nav{
+			// Activate sticky mode
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
 
-		display:flex;
-		justify-content: space-between;
-		align-items: center;
+			display:flex;
+			justify-content: space-between;
+			align-items: center;
+			
+			&__name{ font-size: 30px; }
+			
+			.nav__link--about{display:block;} // Now that we have room, show this one.
+			
+			&__links{
+				flex:1; // take all the space it needs from the nav
+				justify-content: flex-end; // send nav links to far right
+				max-width: 400px;
+				
+				// undo some mobile styles
+				position: static;
+				background:transparent;
+				height: auto;
+				padding:0;
+				opacity:1;
+
+				display:flex;
+				justify-content: center;
+				align-items: center;
+
+				a{
+					padding: 10px;
+					font-size: 18px;
+
+					&:after{
+						transition: opacity 150ms ease;
+						opacity: 0;
+						content:"";
+						display:block;
+						width: 100%;
+						height: 15px;
+						background:$apricot-light;
+						position: absolute;
+						top: 50%;
+						left: 0;
+						z-index: -1;
+						transform: translate(0, -71%) skew(9deg) rotate(-2deg);
+					}
+
+					&:hover{
+						color: $nav-background-color;
+						&:after{
+							transition: opacity 100ms ease;
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}	
 		
-		&__name{ font-size: 30px; }
-		
-		.nav__link--about{display:block;} // Now that we have room, show this one.
-		
-		&__links{
-			flex:1; // take all the space it needs from the nav
-			justify-content: flex-end; // send nav links to far right
-			max-width: 400px;
-		}
-	}	
-	
-}
+	}
 
-@media all and (min-width: $desktop-min-width){
-	// ONLY CHANGES FOR DESKTOPS
-	.nav__name{ font-size: 35px; }
-}
+	@media all and (min-width: $desktop-min-width){
+		// ONLY CHANGES FOR DESKTOPS
+		.nav__name{ font-size: 35px; }
+	}

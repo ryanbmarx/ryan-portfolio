@@ -86,6 +86,21 @@ window.addEventListener('DOMContentLoaded', function(e){
 					project.classList.remove('project--visible');
 				}
 			}
+		});
+	});
+
+	// Hamburger button
+	const hamburger = document.querySelector('#hamburger')
+	hamburger.addEventListener("click", function(e){
+		console.log('CHEEZBURGER!')
+		hamburger.classList.toggle('open');
+	});
+
+	const navLinks = [].slice.call(document.querySelectorAll('.nav__link'));
+	for (let navLink of navLinks){
+		navLink.addEventListener('click', function(e){
+			hamburger.classList.toggle('open');
 		})
-	})
-})
+	}
+
+});

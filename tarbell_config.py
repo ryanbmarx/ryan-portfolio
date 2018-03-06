@@ -107,6 +107,10 @@ def check_for_thumbnail(repo_name_str):
 # @register_hook('preview')
 @blueprint.app_template_global('generate_projects_list')
 def generate_projects_list():
+
+    print("################################")
+    print("## Fetching github repositories")
+
     user = os.environ['github_user']
     password = os.environ['github_password']
 

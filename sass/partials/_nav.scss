@@ -1,12 +1,21 @@
+
 .nav {
 	font-family: $display-fonts;
 
 	padding: 10px 15px;
-	background: rgba($nav-background-color, .9);
+	background: rgba($nav-background-color, .95);
 	z-index:1000;
 	box-sizing:border-box;
 
 	color: white;
+
+	// STICK THE NAV
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: $nav-height;
 
 	// To juggle the name and hamburger
 	display: flex;
@@ -24,7 +33,7 @@
 		// Evenly space it's nav links
 		display:block;
 
-		position: absolute;
+		position: fixed;
 		width: 100%;
 		background: rgba(#222, .95);
 		height: 100vh;
@@ -67,24 +76,24 @@
 
 		.nav{
 			// Activate sticky mode
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
+			// position: fixed;
+			// top: 0;
+			// left: 0;
+			// width: 100%;
 
 			display:flex;
 			justify-content: space-between;
 			align-items: center;
-			
+
 			&__name{ font-size: 30px; }
-			
+
 			.nav__link--about{display:block;} // Now that we have room, show this one.
-			
+
 			&__links{
 				flex:1; // take all the space it needs from the nav
 				justify-content: flex-end; // send nav links to far right
 				max-width: 400px;
-				
+
 				// undo some mobile styles
 				position: static;
 				background:transparent;
@@ -125,7 +134,7 @@
 				}
 			}
 		}	
-		
+
 	}
 
 	@media all and (min-width: $desktop-min-width){

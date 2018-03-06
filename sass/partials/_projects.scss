@@ -1,10 +1,11 @@
-$project_horiz_width: 750px;
 
-.section--portfolio{
+.section.section--portfolio{
 	background: rgba($green, .5);
 	display:flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
+	padding-left:0;
+	padding-right:0;
 
 }
 
@@ -62,7 +63,7 @@ $project_horiz_width: 750px;
 	text-align:center;
 	display:none;
 
-    width: 100%;
+    // width: 100%;
 
 	&--visible{
 		// To organize the contents
@@ -80,7 +81,7 @@ $project_horiz_width: 750px;
 
 	&__container{
 		box-sizing: border-box;
-		padding: $project-padding;
+		padding: #{$project-padding} #{$project-padding / 2};
 	}
 
 	&__thumb{
@@ -168,9 +169,6 @@ $project_horiz_width: 750px;
 
 @media all and (max-width:#{ $project_horiz_width + ($section-padding * 2)}){
 	// Disable background image ONLY on the mobile/nonside-saddle views
-	.project__thumb{
-		// max-height: 400px;
-	}
 }
 
 
@@ -189,6 +187,10 @@ $project_horiz_width: 750px;
 
 @media all and (min-width: #{ $project_horiz_width + ($section-padding * 2)}){
 	// ONLY CHANGES FOR WHEN PROJECTS ARE SIDESADDLE ARRANGED
+	.section.section--portfolio{
+		padding-left:$section-padding;
+		padding-right:$section-padding;
+	}
 	.project__thumb {
 		min-height: 400px;
 	}

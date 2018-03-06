@@ -23,6 +23,8 @@ import json # To parse the api responses
 
 from PIL import Image   # For the image sizing and dimensions
 
+from collections import Counter # For counting the occurences of each tag
+
 blueprint = Blueprint('ryan-portfolio', __name__)
 
 
@@ -172,8 +174,9 @@ def get_tags_list(projects):
     for p in projects:
         tag_list.append(p['topics'])
     
+    total_projects = len(projects)
     tag_list = reduce(operator.add, tag_list)
-    tag_list = list(set(tag_list))
+    tag_list = Counter(tag_list)
     return tag_list
 
 # Google spreadsheet key

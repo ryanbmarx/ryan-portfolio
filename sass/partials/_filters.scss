@@ -1,13 +1,16 @@
 .filters{
-	margin: $grid-gap 0;
+	margin: 0 $grid-gap 0 0;
+	width: 235px;
 	display: flex;
-	justify-content: center;
+	// justify-content: center;
 	align-items: stretch;
 	flex-wrap:wrap;
 }
 
 .filter{
-	@include distribute_across_columns(5, 5px);
+	flex: 1 1 30%; // Keep filters roughly three-across at all times
+	min-width: 75px; // Should force it to two-across at skinny widths
+
 	background: $isabelline;
 	border: none;
 	padding: 10px; 
@@ -16,20 +19,53 @@
 	transition: all 150ms ease;
 	color: set-text-color($isabelline, true);
 	box-sizing: border-box;
-	border: 1px solid transparent;
+	text-transform:uppercase;
 	
+	// Make the bars in the buttons go.
+	position: relative;
+	overflow:hidden;
+
 	&:hover{
 		// color: set-text-color($green, true);
-		// background: rgba($green, .2);
-		border: 1px solid $green;
+		background: rgba($green, .15);
 		transition: all 150ms ease;
-
 	}
 
-	&--checked {
+	&[data-topic='all']{
+		flex: 1 1 100%; // Make the all-topics button fullwidth
+	}
+
+	&--checked, &--checked:hover, &--checked:focus {
 		color: set-text-color($green, true);
 		background: $green;
 		transition: all 150ms ease;
 	}
+
+	&__bar{
+		position:absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width:100%;
+		background: rgba(black, .2);
+	}
 }
 
+
+@media all and (min-width: $phablet-min-width){
+	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS	
+}
+
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR TABLETS + DESKTOPS
+	.filters{
+		position:sticky;
+		top: $nav-height + $grid-gap;
+	}	
+
+
+}
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+}

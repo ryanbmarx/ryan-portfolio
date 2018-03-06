@@ -16,6 +16,23 @@ fontawesome.library.add(faExternalLink);
 
 // TODO: Add smoothscroll polyfill
 
+// Polyfill for matches() from https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+// For browsers that do not support Element.matches() or Element.matchesSelector(), 
+// but carry support for document.querySelectorAll(), a polyfill exists:
+if (!Element.prototype.matches) {
+    Element.prototype.matches = 
+        Element.prototype.matchesSelector || 
+        Element.prototype.mozMatchesSelector ||
+        Element.prototype.msMatchesSelector || 
+        Element.prototype.oMatchesSelector || 
+        Element.prototype.webkitMatchesSelector ||
+        function(s) {
+            var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+                i = matches.length;
+            while (--i >= 0 && matches.item(i) !== this) {}
+            return i > -1;            
+        };
+}
 
 const inView = require('in-view');
 
@@ -46,7 +63,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 
 });
 
-
+// FILTER THE PROJECTS TO THE CHOSEN CATEGORY
 
 window.addEventListener('DOMContentLoaded', function(e){
 	// Init the portfolio filter buttons
@@ -54,10 +71,21 @@ window.addEventListener('DOMContentLoaded', function(e){
 	filterButtons.forEach(f => {
 		f.addEventListener('click', function(e){
 			console.log('click');
-			if (this.classList.contains('filter--checked')) this.classList.remove('filter--checked');
-			else this.classList.add('filter--checked');
+			document.querySelector('.filter--checked').classList.remove('filter--checked');
+			this.classList.add('filter--checked');
 
-			filterPortfolio();
+			// We're using css selectors to match projects. If the "all" button is selected,
+			// then set the css selector to the wildcard
+			const 	desiredCategory = this.dataset.topic == "all" ? "" : `[data-${this.dataset.topic}]`,
+					projects = [].slice.call(document.querySelectorAll('.project'));
+
+			for (let project of projects){
+				if(project.matches(`.project${desiredCategory}`)){
+					project.classList.add('project--visible');
+				} else {
+					project.classList.remove('project--visible');
+				}
+			}
 		})
 	})
 })

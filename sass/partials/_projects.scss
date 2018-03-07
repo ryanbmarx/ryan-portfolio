@@ -33,22 +33,20 @@
 	.container{	
 		display:flex;
 		flex-wrap: wrap;
-		align-items: flex-start;
+		align-items: stretch;
 	
 	}
 }
 
 .projects{
 	display:flex;
-	// align-items: stretch;
 	justify-content: space-between;
 	flex-wrap: wrap;
 
-	flex: 1; // Keep it side-saddle with the filters
-
-	// max-width: 1500px;
-	// margin-left:auto;
-	// margin-right:auto;
+	// Keep it side-saddle with the filters
+	// The flex statement here and for .filters-wrapper will
+	// keep them in a ratio of about 1:3.
+	flex: 3 3 $project_overall_min_width; 
 }
 
 
@@ -190,10 +188,10 @@
 
 @media all and (min-width: #{ $project_horiz_width + ($section-padding * 2)}){
 	// ONLY CHANGES FOR WHEN PROJECTS ARE SIDESADDLE ARRANGED
-	.section.section--portfolio{
-		padding-left:$section-padding;
-		padding-right:$section-padding;
-	}
+	// .section.section--portfolio{
+	// 	padding-left:$section-padding;
+	// 	padding-right:$section-padding;
+	// }
 	.project__thumb {
 		min-height: 400px;
 	}

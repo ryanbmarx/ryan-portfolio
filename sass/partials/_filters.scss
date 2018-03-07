@@ -1,10 +1,28 @@
+.filters-wrapper{
+	// Provides seperation from projects whether stacked on top
+	// or in side-saddle. Either way, the margin not being used 
+	// is not noticeable.
+	margin: 0 $grid-gap $grid-gap 0; 
+
+
+	// Keep it side-saddle with the projects ..
+	// The flex statement here and for .projects will
+	// keep them in a ratio of about 1:3.
+	flex: 1 1 $project_filters_overall_min_width;
+}
+
 .filters{
-	margin: 0 auto $grid-gap auto;
-	width: 235px;
 	display: flex;
-	// justify-content: center;
 	align-items: stretch;
 	flex-wrap:wrap;
+
+	// Stick when there is room to stick. On mobile,
+	// The filters-wrapper will be the height of the filters, 
+	// so, while technically it will be stuck, it will
+	// scroll away with the filters-wrapper.
+	position:sticky;
+	top: $nav-height + $grid-gap;
+
 }
 
 .filter{
@@ -58,11 +76,14 @@
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS
-	.filters{
-		position:sticky;
-		top: $nav-height + $grid-gap;
-		margin: 0 $grid-gap 0 0;
-	}	
+	// .filters-wrapper{
+		
+	// }
+
+	// .filters{
+	// 	position:sticky;
+	// 	top: $nav-height + $grid-gap;
+	// }	
 
 
 }

@@ -103,6 +103,13 @@
 
 		min-height: 300px; // Need this so there is space to display the image
 
+		border: 10px solid white; // Adds a little seperation so the screencaps look like screencaps
+
+		// Still not sold on this, but will revisit later.
+		// transform: translate(-13px,24px) rotate(-3deg) scale(.95);
+		// clip-path: polygon(0% 0, 100% 0, 100% 99.6%, 0% 95.1%);
+		// box-shadow: 3px 3px 3px #aaa;		
+
 		img{
 			width: 100%;
 			

@@ -1,0 +1,6 @@
+{% for cat in skill_categories|sort(attribute="order") %}
+	<h2 class='section__header'>{{ cat.label }} skills</h2>
+	{% for skill in skills|sort(True, attribute="rating") if skill.category == cat.slug %}
+		{{ rating_bar(skill.rating, skill.name)}}
+	{% endfor %}
+{% endfor %}

@@ -23,6 +23,7 @@
 	justify-content: space-between;
 
 	&__name{
+		flex: 1 1 100px;
 		font-size: 30px;
 		margin: 0;
 		text-align: left;
@@ -46,7 +47,15 @@
 	}
 
 	&__link{
-		flex: 1;
+		// flex: 1;
+		@supports (width: max-content){
+			width: max-content;
+		}
+
+		@supports not (width: max-content){
+			width: auto;
+			a { white-space:nowrap}
+		}
 		a{
 			font-size:28px;
 			display:block;
@@ -72,16 +81,10 @@
 	// 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS
 	// }
 
-	@media all and (min-width: $tablet-min-width){
-		// ONLY CHANGES FOR TABLETS + DESKTOPS	
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 
 		.nav{
-			// Activate sticky mode
-			// position: fixed;
-			// top: 0;
-			// left: 0;
-			// width: 100%;
-
 			display:flex;
 			justify-content: space-between;
 			align-items: center;
@@ -93,7 +96,7 @@
 			&__links{
 				flex:1; // take all the space it needs from the nav
 				justify-content: flex-end; // send nav links to far right
-				max-width: 400px;
+				// max-width: 400px;
 
 				// undo some mobile styles
 				position: static;

@@ -12,6 +12,7 @@
 
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
+@import "partials/scaffolding";
 @import "partials/header";
 @import "partials/projects";
 @import "partials/filters";
@@ -77,43 +78,3 @@ h5{
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
  
 
-.section{
-	// margin-bottom: $grid-gap;
-	padding: $nav-height $section-padding $section-padding $section-padding; // Extra height here for navigating under the sticky nav bar
-	box-sizing: border-box;
-	max-width: $section-max-width;
-	margin-left: auto;
-	margin-right: auto;
-	
-	&__header{
-		position:relative;		
-		font: 23px/1em #{$display-fonts}, sans-serif;
-		font-weight: bold;
-		overflow:hidden;
-		margin: 0 0 $grid-gap 0;
-		width: 100%;
-		
-		text-align: center;
-	    align-self: center; // For when the header is in a flex or grid container
-		
-		font-family: $display-fonts;
-		font-size: 2em;
-		font-weight:bold;
-	
-	}
-}
-
-
-@media all and (min-width: $phablet-min-width){
-	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS	
-}
-
-@media all and (min-width: $tablet-min-width){
-	// ONLY CHANGES FOR TABLETS + DESKTOPS	
-
-
-}
-
-@media all and (min-width: $desktop-min-width){
-	// ONLY CHANGES FOR DESKTOPS
-}

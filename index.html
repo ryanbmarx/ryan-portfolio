@@ -102,56 +102,60 @@
 <body>
 	{% include 'subtemplates/_header.html' %}
 	<section id="about" class='section section--about-me'>
-		<h1 class='section__header sr-only'>About me</h1>
-		<div class='section__inner'>
-			<div class='bio'>
-				{{ bio|markdown }}
-			</div>
-			<div id='history' class='work-history'>
-				<h2 class='section__header'>Work history</h2>
-				<div class='timeline'>
-					<div class='timeline__labels'>
-						<span class='timeline__label'>2002</span>
-						<span class='timeline__label timeline__label--05'>2005</span>
-						<span class='timeline__label timeline__label--10'>2010</span>
-						<span class='timeline__label'>Present</span>
-					</div>	
-					<div class='timeline__lines'>
-						<div class='timeline__line timeline__line--ne'></div>
-						<div class='timeline__line timeline__line--nwi'></div>
-						<div class='timeline__line timeline__line--trib'></div>
-					</div>
-					<div class='timeline__jobs'>
-						<div class='job job--ne'>
-							<span class='job__title'>Copy editor, designer, Presentation Editor</span>
-							<span class='job__employer'>The News-Enterprise</span>
+		<div class='container'>
+			<h1 class='section__header sr-only'>About me</h1>
+			<div class='section__inner'>
+				<div class='bio'>
+					{{ bio|markdown }}
+				</div>
+				<div id='history' class='work-history'>
+					<h2 class='section__header'>Work history</h2>
+					<div class='timeline'>
+						<div class='timeline__labels'>
+							<span class='timeline__label'>2002</span>
+							<span class='timeline__label timeline__label--05'>2005</span>
+							<span class='timeline__label timeline__label--10'>2010</span>
+							<span class='timeline__label'>Present</span>
+						</div>	
+						<div class='timeline__lines'>
+							<div class='timeline__line timeline__line--ne'></div>
+							<div class='timeline__line timeline__line--nwi'></div>
+							<div class='timeline__line timeline__line--trib'></div>
 						</div>
-						<div class='job job--nwi'>
-							<span class='job__title'>Designer, Graphics Editor</span>
-							<span class='job__employer'>The Times of Northwest Indiana</span>
-						</div>
-						<div class='job job--trib'>
-							<span class='job__title'>Graphic reporter, Assistant DataViz Editor</span>
-							<span class='job__employer'>Chicago Tribune</span>
+						<div class='timeline__jobs'>
+							<div class='job job--ne'>
+								<span class='job__title'>Copy editor, designer, Presentation Editor</span>
+								<span class='job__employer'>The News-Enterprise</span>
+							</div>
+							<div class='job job--nwi'>
+								<span class='job__title'>Designer, Graphics Editor</span>
+								<span class='job__employer'>The Times of Northwest Indiana</span>
+							</div>
+							<div class='job job--trib'>
+								<span class='job__title'>Graphic reporter, Assistant DataViz Editor</span>
+								<span class='job__employer'>Chicago Tribune</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id='skills' class='skills'>
-				{% for cat in skill_categories|sort(attribute="order") %}
-					<h2 class='section__header'>{{ cat.label }} skills</h2>
-					{% for skill in skills|sort(True, attribute="rating") if skill.category == cat.slug %}
-						{{ rating_bar(skill.rating, skill.name)}}
+				<div id='skills' class='skills'>
+					{% for cat in skill_categories|sort(attribute="order") %}
+						<h2 class='section__header'>{{ cat.label }} skills</h2>
+						{% for skill in skills|sort(True, attribute="rating") if skill.category == cat.slug %}
+							{{ rating_bar(skill.rating, skill.name)}}
+						{% endfor %}
 					{% endfor %}
-				{% endfor %}
-
+				</div>
 			</div>
 		</div>
 	</section>
 	<section id='contact' class='section section--contact'>
+		<div class='container'>
 		{% include 'subtemplates/_contact.html' %}
+		</div>
 	</section>
 	<section id='work' class='section section--portfolio'>
+		<div class='container'>
 		{% set projects_list = generate_projects_list() %}
 		{% set total_projects = projects_list|length %}
 		<h1 class='section__header'>My work</h1>
@@ -167,10 +171,11 @@
 			{% endfor %}
 		</div>
 		<div class='projects'>
-		{% for project in projects_list|sort(True, attribute='date_updated') %}
-			{% set p = project %}
-			{% include "subtemplates/_project.html" %}
-		{% endfor %}
+			{% for project in projects_list|sort(True, attribute='date_updated') %}
+				{% set p = project %}
+				{% include "subtemplates/_project.html" %}
+			{% endfor %}
+			</div>
 		</div>
 	</section>
 	<footer class='section section--footer footer'>

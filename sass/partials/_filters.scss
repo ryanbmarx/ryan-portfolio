@@ -7,7 +7,7 @@
 
 	// Keep it side-saddle with the projects ..
 	// The flex statement here and for .projects will
-	// keep them in a ratio of about 1:3.
+	// keep them in a ratio of about 1:5.
 	flex: 1 1 $project_filters_overall_min_width;
 }
 
@@ -15,6 +15,7 @@
 	display: flex;
 	align-items: stretch;
 	flex-wrap:wrap;
+	margin: -5px; // This approximates margin-collapse in a flex design.
 
 	// Stick when there is room to stick. On mobile,
 	// The filters-wrapper will be the height of the filters, 
@@ -26,14 +27,14 @@
 }
 
 .filter{
-	flex: 1 1 30%; // Keep filters roughly three-across at all times
+	flex: 1 1 45%; // Keep filters roughly two-across at all times, with a little room for the margins
 	min-width: 75px; // Should force it to two-across at skinny widths
 
 	background: $isabelline;
 	border: none;
 	padding: 10px; 
 	cursor: pointer;
-	margin: 0 5px 5px 0;
+	margin: 5px;
 	transition: all 150ms ease;
 	color: set-text-color($isabelline, true);
 	box-sizing: border-box;

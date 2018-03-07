@@ -5,14 +5,13 @@
 
 	max-width: $section-max-width;
 	margin: 0 auto;
-	padding: 0 $section-padding
+	padding: $nav-height $section-padding $section-padding $section-padding; // Extra height here for navigating under the sticky nav bar
 
 }
 
 
 .section{
-	// margin-bottom: $grid-gap;
-	padding: $nav-height $section-padding $section-padding $section-padding; // Extra height here for navigating under the sticky nav bar
+
 	box-sizing: border-box;
 	
 	&__header{

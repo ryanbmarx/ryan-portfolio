@@ -24,6 +24,7 @@ import json # To parse the api responses
 from PIL import Image   # For the image sizing and dimensions
 
 from collections import Counter # For counting the occurences of each tag
+from operator import itemgetter # for sorting tag list in order of repo quantity
 
 blueprint = Blueprint('ryan-portfolio', __name__)
 
@@ -108,8 +109,7 @@ def check_for_thumbnail(repo_name_str):
 @blueprint.app_template_global('generate_projects_list')
 def generate_projects_list():
 
-    print("################################")
-    print("## Fetching github repositories")
+    print("#### Fetching github repositories")
 
     user = os.environ['github_user']
     password = os.environ['github_password']
@@ -122,7 +122,6 @@ def generate_projects_list():
         
         # If the repo is owned by me and is not private
         if repo.owner.login == user and not repo.fork:
-            
             # Get the topics, which is in preview
             topics_url = "https://api.github.com/repos/{}/{}/topics".format(user, repo.name.lower())
             head = {"accept":"application/vnd.github.mercy-preview+json"}
@@ -133,6 +132,7 @@ def generate_projects_list():
 
             # Only pluck data if it is a featured repo
             if "featured" in topic_tags:
+                print("## Fetching {}".format(repo.name.lower()))
                 r = {}
                 dates = get_date_created(user, password, repo.name.lower())
                 r['id'] = repo.name.lower()
@@ -181,7 +181,14 @@ def get_tags_list(projects):
     total_projects = len(projects)
     tag_list = reduce(operator.add, tag_list)
     tag_list = Counter(tag_list)
-    return tag_list
+
+    retval = []
+    for tag in tag_list.keys():
+        retval.append({
+            "topic": tag,
+            "amount":tag_list[tag]
+        })
+    return sorted(retval, key=itemgetter('amount'), reverse=True) 
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "16I7B3l2Dew220S_NwCQjTMCnTK9eCbjjlxpbEmA2fGU"

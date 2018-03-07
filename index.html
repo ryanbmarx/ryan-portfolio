@@ -155,15 +155,14 @@
 		{% set projects_list = generate_projects_list() %}
 		{% set total_projects = projects_list|length %}
 		<h1 class='section__header'>My work</h1>
-		{# <p><span class='exploded'>My work</span></p> #}
 		<div class='filters'>
 			<button class='filter filter--checked' data-topic='all'>All projects ({{ total_projects }})</button>
 			{% set tags_list = get_tags_list(projects_list) %}
-			{% for t in tags_list.keys()|sort() %}
-				{% set width = tags_list[t] / total_projects * 100 %}
-				<button class='filter' data-topic='{{ t|lower }}'>
+			{% for t in tags_list %}
+				{% set width = t.amount / total_projects * 100 %}
+				<button class='filter' data-topic='{{ t.topic|lower }}'>
 					<span class='filter__bar' style="transform:translate(-{{ 100 - width }}%,0)"></span>
-					<span class='filter__label'>{{ t|upper }} ({{ tags_list[t] }})</span>
+					<span class='filter__label'>{{ t.topic|upper }} ({{ t.amount }})</span>
 				</button>
 			{% endfor %}
 		</div>

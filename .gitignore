@@ -7,10 +7,13 @@ node_modules
 css
 app.min.js
 app.min.js.map
+gallery.min.js
+gallery.min.js.map
 vendor.min.js
 vendor.min.js.map
 sprite.svg
 _out
 img/_archive
 img/micro-thumbs
+img/gallery/thumbs
 _vault

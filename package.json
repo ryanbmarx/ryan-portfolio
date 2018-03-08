@@ -11,10 +11,10 @@
     "publish": "rm -rf _out && npm run build && tarbell generate _out && npm run upload && rm -rf _out",
     "publish:staging": "rm -rf _out && npm run build && tarbell generate _out && npm run upload:staging && rm -rf _out",
     "postinstall": "pip install -r requirements.txt",
+    "build:gallery_thumbs": "node scripts/make-micro-thumbs.js 400 30 ./img/gallery ./img/gallery/thumbs",
     "build:micro_thumbs": "node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs",
     "upload": "node scripts/upload-with-sftp-upload.js _out",
     "upload:staging": "node scripts/upload-with-sftp-upload.js _out test"
-
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
     "@fortawesome/fontawesome-pro-light": "^5.0.2",
     "@fortawesome/fontawesome-pro-regular": "^5.0.2",
     "@fortawesome/fontawesome-pro-solid": "^5.0.2",
-    "in-view": "^0.6.1"
+    "in-view": "^0.6.1",
+    "lightgallery.js": "^1.0.2"
   }
 }

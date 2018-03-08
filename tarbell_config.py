@@ -105,6 +105,21 @@ def check_for_thumbnail(repo_name_str):
     else:
         return "img/missing.png"
 
+
+@blueprint.app_template_global('generate_gallery')
+def generate_gallery_list(dir_path):
+    """
+    Scans a directory of photos and returns the filenames as a list
+    """
+    desired_file_types = ['png', 'jpg', 'jpeg', 'svg']
+    retval = []
+    for image in os.listdir(dir_path):
+        file_ext = image.split('.')[1]
+        if file_ext in desired_file_types:
+            retval.append(image)
+    return retval
+
+
 # @register_hook('preview')
 @blueprint.app_template_global('generate_projects_list')
 def generate_projects_list():

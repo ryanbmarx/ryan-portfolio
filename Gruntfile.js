@@ -44,6 +44,33 @@ module.exports = function(grunt) {
           ]
         ]
       }
+    },
+    gallery: {
+      src: ['js/src/gallery.js'],
+      dest: 'js/gallery.min.js',
+      options: {
+        plugin: [
+          [
+            'minifyify', {
+              map: 'gallery.min.js.map',
+              output: './js/gallery.min.js.map'
+            }
+          ]
+        ],
+        transform: [
+          [
+            'babelify', {
+              "presets": [
+                ["env", {
+                  "targets": {
+                    "browsers": ["last 2 versions", "ie >= 12"]
+                  }
+                }]
+              ]
+            }
+          ]
+        ]
+      }
     }
   };
 
@@ -74,11 +101,17 @@ module.exports = function(grunt) {
     options: {
       outputStyle: 'compressed',
       sourceMap: true,
-      includePaths: [ 'sass/']
+      includePaths: [ 
+        'sass/', 
+        'node_modules/lightgallery.js/dist/css/'
+      ]
+
     },
     app: {
       files: {
-        'css/styles.css': 'sass/styles.scss'
+        'css/base.css': 'sass/base.scss',
+        'css/styles.css': 'sass/styles.scss',
+        'css/gallery.css': 'sass/gallery.scss'
       }
     }
   };
@@ -119,7 +152,7 @@ module.exports = function(grunt) {
     },
     js: {
       files: ['js/src/**/*.js'],
-      tasks: ['browserify:app']
+      tasks: ['browserify']
     },
     svg: {
       files: ['img/src/**/*.svg'],

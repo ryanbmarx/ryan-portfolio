@@ -1,0 +1,50 @@
+{# {% set photos = [
+	"img_0_0_6.jpg",
+	"img_0_0_4.jpg",
+	"lester_jon.jpg",
+	"img_0_0_7.jpg",
+	"guaranteed-rate-cheese-caramel-mix-bag.jpg",
+	"guaranteed-rate-chicken-sandwich.jpg",
+	"guaranteed-rate-deep-dish-pizza.jpg",
+	"heine_ap.jpg",
+	"Heidi_Holan_headshot_vertical_TRIBUNE.jpg",
+	"3.jpg",
+	"Green-cleaning-is-not-a-fad-400x284.jpg",
+	"hello_february-RESIZED-for-wordpress-300x134.jpg",
+	"hello-december-make-my-wishes-come-true-RESIZED-400x250.jpg",
+	"2.jpg",
+	"Local Market-Preview.jpg",
+	"00072.jpg",
+	"2-150x150.jpg",
+	"003.jpg"]
+%}
+ #}
+{% set photos = generate_gallery('img/gallery/thumbs') %}
+
+{% extends '_base.html' %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="css/gallery.css">
+{% endblock stylesheets %}
+
+{% block content %}
+<section class='section section--gallery'>
+<div id='gallery' class='gallery container'>
+		{% for photo in photos %}
+			<a class='gallery__image' href="img/gallery/{{ photo }}">
+				<img data-src='img/gallery/{{ photo }}' src='img/gallery/thumbs/{{ photo }}'/>
+			</a>
+		{% endfor%}
+	</div>
+</section>
+{% endblock content %}
+
+
+{% block scripts %}
+{{ super() }}
+<script src="js/gallery.min.js"></script>
+{% endblock scripts %}
+
+</body>
+</html>

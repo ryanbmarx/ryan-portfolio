@@ -1,7 +1,7 @@
 import filterPortfolio from './filter-portfolio.js';
 
 import fontawesome from '@fortawesome/fontawesome';
-import {faInstagram, faLinkedin, faGithub, faTwitter} from 		'@fortawesome/fontawesome-free-brands';
+import {faInstagram, faLinkedin, faGithub, faTwitter} from '@fortawesome/fontawesome-free-brands';
 import {faEnvelope, faExternalLink } from '@fortawesome/fontawesome-pro-light';
 import faCircle from '@fortawesome/fontawesome-pro-solid';
 

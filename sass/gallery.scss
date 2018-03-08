@@ -1,0 +1,34 @@
+@import "config";
+$gallery-column-width: 280px;
+
+
+@import "lightgallery.min";
+
+.section--gallery{
+	background: rgba($green, .5);
+}
+
+.gallery{
+	max-width: 1000px;
+	margin: 0 auto;
+	columns:#{$gallery-column-width} auto;
+	column-gap: $grid-gap;
+
+	&__image{
+		margin: 0 0 $grid-gap 0;
+		display:inline-block;
+		background: white;
+		box-sizing: border-box;
+		padding: 10px;
+		border-radius: $hamburger-border-radius;
+
+		// &:first-child{ margin-top:0; }
+		&:last-child{ margin-bottom:0; }
+		
+		img{
+			width: 100%;
+			display:block;
+		}
+	}
+}
+

@@ -1,18 +1,12 @@
-{% macro squares() %}
-	<div class='squares'>
-		{% set colors = [
-				{"name":"black", "hex": " #0a090c"},
-				{"name":"black-rich", "hex": "#07393c"},
-				{"name":"apricot-light", "hex": " #fcd7ad"},
-				{"name":"isabelline", "hex": "#f0edee"},
-				{"name":"blue-baby", "hex": " #90ddf0"},
-				{"name":"green", "hex": " #2c666e"},
-				{"name":"purple", "hex": "#7f7caf"}
-		] %}
-		{% for color in colors %}
-			<div class='square--{{ color.name }}' style="width: 150px; height: 150px; background: {{ color.hex }}"></div>
-		{%endfor%}
-	</div>
+{% extends '_base.html' %}
+
+{% macro rating_bar(r, label) %}
+	<dl class='rating'>
+		<dt class='rating__label'>{{ label }}</dt>
+		<dd class='rating__bar-wrapper'>
+			<div class='rating__bar' style='width: {{ r * 10 }}%'></div>
+		</dd>
+	</dl>
 {% endmacro %}
 
 {% macro rating(r, label) %}
@@ -29,119 +23,47 @@
 	</dl>
 {% endmacro %}
 
-{% macro rating_bar(r, label) %}
-	<dl class='rating'>
-		<dt class='rating__label'>{{ label }}</dt>
-		<dd class='rating__bar-wrapper'>
-			<div class='rating__bar' style='width: {{ r * 10 }}%'></div>
-		</dd>
-	</dl>
-{% endmacro %}
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+{% endblock stylesheets %}
 
-{% set url_canonical = "http://www.ryanbmarx.com/index.html" %}
-{% set description = "Ryan Marx tells stories and creates experiences online" %}
-{% set thumbnail = "http://ryanbmarx.com/img/header-background--tablet.jpg" %}
-{% set dimensions = "img/header-background--tablet.jpg"|get_thumbnail_info %}
-{% set thumbnail_alt = "Ryan Marx at work" %}
-
-<!DOCTYPE html>
-<html>
-<head>
-	{# Google analytics #}
-	{% include 'subtemplates/_google-analytics.html' %}
-	<title>DataViz and Front-End | Ryan B. Marx</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	{# structured data #}
-	{# social #}
-
-	{# Prefetch/preload assets #}
-	<link rel="prefetch" href="/fonts/BreulGroteskB-Light.woff" as="font">
-	<link rel="prefetch" href="/fonts/BreulGroteskB-Bold.woff" as="font">
-	<link rel="prefetch" href="/fonts/BreulGroteskB-Black.woff" as="font">
-	<link rel="prefetch" href="/fonts/BreulGroteskB-Black.woff" as="font">
-    <link rel="preload" href="/img/header-background--desktop.jpg" as="image">
-
-	<script type="text/javascript" src='js/vendor.min.js'></script>
-
-	<link rel="canonical" type="text/css" href="{{ url_canonical }}">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-
-	{% block twitter scoped%}
-	    <meta name="twitter:card" content="summary_large_image">
-	    <meta name="twitter:site" content="@ryanmarx" />
-	    <meta name="twitter:title" content="{{ page_title }}" />
-	    <meta name="twitter:description" content="{{ description }}" />
-		<meta name="twitter:image" content="{{ thumbnail }}" />
-	    <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />
-	    <meta name="twitter:creator" content="@ryanmarx" />
-	{% endblock twitter %}
-
-	{% block opengraph scoped %}
-	    <meta property="og:url" content="{{ url_canonical }}" />
-	    <meta property="og:type" content="article" /> 
-	    <meta property="og:title" content="{{ page_title }}" />
-	    <meta property="og:description" content="{{ shareline }}" />
-	    <meta property="og:image" content="{{ thumbnail }}" />
-	    <meta name="og:image:alt" content="{{ thumbnail_alt }}" />
-	    <meta name="og:image:height" content="{{ dimensions.height }}px" />
-	    <meta name="og:image:width" content="{{ dimensions.width }}px" />
-	{% endblock opengraph %}
-
-	{% block structured_data_meta scoped %}
-	    {# METS/STRUCTURED DATA #}
-	    <meta name="description" content="{{ description }}" />
-	    <meta name="keywords" content="TK" />
-	    <meta name="author" content="Ryan Marx" />
-	{% endblock structured_data_meta %}
-
-
-</head>
-<body>
-	{% include 'subtemplates/_header.html' %}
-	<section id="about" class='section section--about-me'>
-		<div class='container'>
-			<h1 class='section__header sr-only'>About me</h1>
-			<div class='section__inner'>
-				<div class='bio'>
-					{{ bio|markdown }}
-				</div>
-				<div id='history' class='work-history'>
-					{% include 'subtemplates/_work-history.html' %}
-				</div>
-				<div id='skills' class='skills'>
-					{% include 'subtemplates/_skills.html' %}
-				</div>
+{% block content %}
+<section id="about" class='section section--about-me'>
+	<div class='container'>
+		<h1 class='section__header sr-only'>About me</h1>
+		<div class='section__inner'>
+			<div class='bio'>
+				{{ bio|markdown }}
+			</div>
+			<div id='history' class='work-history'>
+				{% include 'subtemplates/_work-history.html' %}
+			</div>
+			<div id='skills' class='skills'>
+				{% include 'subtemplates/_skills.html' %}
 			</div>
 		</div>
-	</section>
-	<section id='contact' class='section section--contact'>
-		<div class='container'>
-		{% include 'subtemplates/_contact.html' %}
+	</div>
+</section>
+<section id='contact' class='section section--contact'>
+	<div class='container'>
+	{% include 'subtemplates/_contact.html' %}
+	</div>
+</section>
+<section id='work' class='section section--portfolio'>
+	<div class='container'>
+		{% set projects_list = generate_projects_list() %}
+		{% set total_projects = projects_list|length %}
+		<h1 class='section__header'>My work</h1>
+		<div class='filters-wrapper'>
+			{% include "subtemplates/_filters.html" %}
 		</div>
-	</section>
-	<section id='work' class='section section--portfolio'>
-		<div class='container'>
-			{% set projects_list = generate_projects_list() %}
-			{% set total_projects = projects_list|length %}
-			<h1 class='section__header'>My work</h1>
-			<div class='filters-wrapper'>
-				{% include "subtemplates/_filters.html" %}
-			</div>
-			<div class='projects'>
-				{% for project in projects_list|sort(True, attribute='date_updated') %}
-					{% set p = project %}
-					{% include "subtemplates/_project.html" %}
-				{% endfor %}
-			</div>
+		<div class='projects'>
+			{% for project in projects_list|sort(True, attribute='date_updated') %}
+				{% set p = project %}
+				{% include "subtemplates/_project.html" %}
+			{% endfor %}
 		</div>
-	</section>
-	<footer class='section section--footer footer'>
-		{% include 'subtemplates/_contact.html' %}
-		<p class='footer__copyright'>© 2016 Ryan B. Marx. All rights reserved.</p>
-	</footer>
-	<script type="text/javascript" src="js/app.min.js"></script>
-</body>
-</html>
+	</div>
+</section>
+{% endblock content %}

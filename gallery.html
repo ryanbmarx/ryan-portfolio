@@ -30,12 +30,16 @@
 
 {% block content %}
 <section class='section section--gallery'>
-<div id='gallery' class='gallery container'>
-		{% for photo in photos %}
-			<a class='gallery__image' href="img/gallery/{{ photo }}">
-				<img data-src='img/gallery/{{ photo }}' src='img/gallery/thumbs/{{ photo }}'/>
-			</a>
-		{% endfor%}
+	<div class='container'>
+		<h1 class='section__header'> A gallery of my work</h1>
+		<p>Here is a collection of my non-coding, mostly-print work.</p>
+		<div id='gallery' class='gallery'>
+			{% for photo in photos %}
+				<a class='gallery__image' href="img/gallery/{{ photo }}">
+					<img data-src='img/gallery/{{ photo }}' src='img/gallery/thumbs/{{ photo }}'/>
+				</a>
+			{% endfor%}
+		</div>
 	</div>
 </section>
 {% endblock content %}

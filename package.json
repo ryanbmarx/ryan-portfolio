@@ -51,6 +51,8 @@
     "@fortawesome/fontawesome-pro-regular": "^5.0.2",
     "@fortawesome/fontawesome-pro-solid": "^5.0.2",
     "in-view": "^0.6.1",
+    "lg-thumbnail.js": "^1.0.0",
+    "lg-zoom.js": "^1.0.1",
     "lightgallery.js": "^1.0.2"
   }
 }

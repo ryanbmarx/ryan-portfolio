@@ -1,6 +1,6 @@
-require("lightgallery.js");
-// require("lg-zoom.js");
-// require("lg-thumbnail.js");
+import 'lightgallery.js';
+import "lg-zoom.js";
+import "lg-thumbnail.js";
 
 document.addEventListener('DOMContentLoaded',function(){
     lightGallery(document.querySelector('#gallery'),{

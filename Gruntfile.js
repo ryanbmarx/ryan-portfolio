@@ -123,7 +123,9 @@ module.exports = function(grunt) {
         require('autoprefixer')({
           browsers: [
            'last 2 versions',
-           'ie >= 12'
+           'ie >= 12',
+             'iOS >= 8',
+            'Safari >= 8'
           ]
         }) 
       ]

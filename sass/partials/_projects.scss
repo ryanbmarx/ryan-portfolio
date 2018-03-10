@@ -30,37 +30,13 @@
 .section.section--portfolio{
 	background: rgba($green, .5);
 	
-	.container{	
-		display:flex;
-		flex-wrap: wrap;
-		align-items: stretch;
-
-		// We'll use this to approximate margin collapse in our flex design. 
-		// It will pull any items touching the right edge over 30px. We'll 
-		// add `margin-right: 30px;` to those flex items to counteract that.
-	    margin-right: -30px; 
-	}
-
-	.section__header{
-		margin-right: 30px; // Approximates margin collapse for flex items
-	}
-}
-
-.projects{
-	display:flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-
-	margin-right: 30px; // Approximates margin collapse for flex items
-
-	// Keep it side-saddle with the filters
-	// The flex statement here and for .filters-wrapper will
-	// keep them in a ratio of about 1:5. The min-width remains 
-	// small so the filters and project wrap at a reasonable width.
-	flex: 5 5 $project_overall_min_width; 
+	.section__header{ margin-bottom: $grid-gap; }	
 }
 
 
+.filters-wrapper{
+	margin: 0 0 $grid-gap 0;
+}
 
 .project{
 	// @include distribute_across_columns(1, $grid-gap)
@@ -129,11 +105,7 @@
 	}	
 
 	&__links{
-		// position: absolute;
-		// left: 0;
-		// width: 100%;
-		// bottom: $project-padding;
-
+	    transform: scale(1.4); // because people like me need large buttons
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -197,11 +169,36 @@
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+	
+	// Use grid to create the side-saddle
+	.section.section--portfolio{		
+		.container{	
+			display:grid;
+			grid-template-columns: #{$project_filters_overall_min_width} 1fr;
+			grid-template-rows: auto auto;
+			grid-gap: $grid-gap;
+		}
+
+		.section__header{
+			grid-column: 1/-1;
+			grid-row: 1;
+			margin-bottom:0;
+		}
+
+		.filters-wrapper{
+				grid-column: 1;
+				grid-row: 2;
+		}
+		.projects{
+				grid-column: 2;
+				grid-row: 2;
+		}
+	}
+
+	// Tweaks to internal project styles
 	.project__name{ font-size:30px; }	
 	.project__tags{ font-size:18px; }
-	.project__thumb {
-		min-height: 350px;
-	}	
+	.project__thumb { min-height: 350px; }	
 }
 
 @media all and (min-width: #{ $project_horiz_width + ($section-padding * 2)}){
@@ -212,6 +209,10 @@
 	// }
 	.project__thumb {
 		min-height: 400px;
+	}
+
+	.project__links{
+		transform: scale(1); // because people like me need large buttons
 	}
 
 

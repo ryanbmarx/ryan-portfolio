@@ -27,7 +27,7 @@
 		font-size: 30px;
 		margin: 0;
 		text-align: left;
-	    transform: translate(0,.13em); // This font has a weird x-height which necessitates this little tweak
+		transform: translate(0,.13em); // This font has a weird x-height which necessitates this little tweak
 
 		a{
 			color:white;
@@ -52,7 +52,7 @@
 	}
 
 	&__link{
-		// flex: 1;
+		margin: auto;
 		@supports (width: max-content){
 			width: max-content;
 		}
@@ -82,71 +82,67 @@
 	transition: all $nav-transition-time ease;
 }
 
-// @media all and (min-width: $phablet-min-width){
-	// 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS
-	// }
-
 @media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+	.nav__name{ font-size: 30px; }
+}
+
+@media all and (min-width: $desktop-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 
-		.nav{
+	.nav{
+		display:flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&__name{ font-size: 35px; }
+
+		.nav__link--about{display:block;} // Now that we have room, show this one.
+
+		&__links{
+			flex:1; // take all the space it needs from the nav
+			justify-content: flex-end; // send nav links to far right
+			// max-width: 400px;
+
+			// undo some mobile styles
+			position: static;
+			background:transparent;
+			height: auto;
+			padding:0;
+			opacity:1;
+
 			display:flex;
-			justify-content: space-between;
+			justify-content: center;
 			align-items: center;
 
-			&__name{ font-size: 30px; }
+			a{
+				padding: 10px;
+				font-size: 18px;
 
-			.nav__link--about{display:block;} // Now that we have room, show this one.
+				&:after{
+					transition: opacity 150ms ease;
+					opacity: 0;
+					content:"";
+					display:block;
+					width: 100%;
+					height: 15px;
+					background:$apricot-light;
+					position: absolute;
+					top: 50%;
+					left: 0;
+					z-index: -1;
+					transform: translate(0, -71%) skew(9deg) rotate(-2deg);
+				}
 
-			&__links{
-				flex:1; // take all the space it needs from the nav
-				justify-content: flex-end; // send nav links to far right
-				// max-width: 400px;
-
-				// undo some mobile styles
-				position: static;
-				background:transparent;
-				height: auto;
-				padding:0;
-				opacity:1;
-
-				display:flex;
-				justify-content: center;
-				align-items: center;
-
-				a{
-					padding: 10px;
-					font-size: 18px;
-
+				&:hover{
+					color: $nav-background-color;
 					&:after{
-						transition: opacity 150ms ease;
-						opacity: 0;
-						content:"";
-						display:block;
-						width: 100%;
-						height: 15px;
-						background:$apricot-light;
-						position: absolute;
-						top: 50%;
-						left: 0;
-						z-index: -1;
-						transform: translate(0, -71%) skew(9deg) rotate(-2deg);
-					}
-
-					&:hover{
-						color: $nav-background-color;
-						&:after{
-							transition: opacity 100ms ease;
-							opacity: 1;
-						}
+						transition: opacity 100ms ease;
+						opacity: 1;
 					}
 				}
 			}
-		}	
+		}
+	}	
 
-	}
-
-	@media all and (min-width: $desktop-min-width){
-		// ONLY CHANGES FOR DESKTOPS
-		.nav__name{ font-size: 35px; }
-	}
+}

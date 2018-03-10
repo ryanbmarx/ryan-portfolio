@@ -1,5 +1,9 @@
 .section--footer{
-		background: $contact-background-color;
+	background: $contact-background-color;
+
+	// This fills any space below the footer in a non-scrolling, non-taking-up-space way
+	box-shadow: 0 100vh 0 100vh #{$contact-background-color}; 
+
 }
 
 .footer{

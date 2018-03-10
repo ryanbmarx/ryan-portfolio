@@ -59,7 +59,8 @@
 
 		@supports not (width: max-content){
 			width: auto;
-			a { white-space:nowrap}
+			a { white-space:nowrap; }
+
 		}
 		a{
 			font-size:28px;

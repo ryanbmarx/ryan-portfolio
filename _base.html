@@ -68,11 +68,11 @@
 	{% endblock preloads %}
 	
 	{% block js_library %}
-	<script type="text/javascript" src='js/vendor.min.js'></script>
+	<script type="text/javascript" src='/js/vendor.min.js'></script>
 	{% endblock js_library %}
 
 	{% block stylesheets %}
-	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
 	{% endblock stylesheets %}
 
 	{% block twitter scoped%}
@@ -105,15 +105,15 @@
 
 
 </head>
-<body>
+<body data-short-header="{% block short_header_attr %}false{% endblock short_header_attr %}">
 	{% include 'subtemplates/_header.html' %}
 	{% block content scoped %}{% endblock content %}
 	<footer class='section section--footer footer'>
 		{% include 'subtemplates/_contact.html' %}
-		<p class='footer__copyright'>© 2016 Ryan B. Marx. All rights reserved.</p>
+		<p class='footer__copyright'>© 2018 Ryan B. Marx. All rights reserved.</p>
 	</footer>
 	{% block scripts %}
-	<script type="text/javascript" src="js/app.min.js"></script>
+	<script type="text/javascript" src="/js/app.min.js"></script>
 	{% endblock scripts %}
 </body>
 </html>

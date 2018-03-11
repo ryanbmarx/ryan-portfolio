@@ -1,0 +1,35 @@
+{% set photos = generate_gallery('img/gallery/thumbs') %}
+
+{% extends '_base.html' %}
+
+{% block short_header_attr %}true{% endblock short_header_attr %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="/css/gallery.css">
+{% endblock stylesheets %}
+
+{% block content %}
+<section class='section section--gallery'>
+	<div class='container'>
+		<h1 class='section__header'> A gallery of my work</h1>
+		<p>Here is a collection of my non-coding, mostly-print work.</p>
+		<div id='gallery' class='gallery'>
+			{% for photo in photos %}
+				<a class='gallery__image' href="/img/gallery/{{ photo }}">
+					<img data-src='/img/gallery/{{ photo }}' src='/img/gallery/thumbs/{{ photo }}'/>
+				</a>
+			{% endfor%}
+		</div>
+	</div>
+</section>
+{% endblock content %}
+
+
+{% block scripts %}
+{{ super() }}
+<script src="/js/gallery.min.js"></script>
+{% endblock scripts %}
+
+</body>
+</html>

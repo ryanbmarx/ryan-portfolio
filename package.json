@@ -11,8 +11,8 @@
     "publish": "rm -rf _out && npm run build && tarbell generate _out && npm run upload && rm -rf _out",
     "publish:staging": "rm -rf _out && npm run build && tarbell generate _out && npm run upload:staging && rm -rf _out",
     "postinstall": "pip install -r requirements.txt",
-    "build:gallery_thumbs": "node scripts/make-micro-thumbs.js 400 30 ./img/gallery ./img/gallery/thumbs",
-    "build:micro_thumbs": "node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs",
+    "build:gallery_thumbs": "rm -rf ./img/gallery/thumbs && mkdir -p ./img/gallery/thumbs && node scripts/make-micro-thumbs.js 400 30 ./img/gallery ./img/gallery/thumbs",
+    "build:micro_thumbs": "rm -rf ./img/micro-thumbs && mkdir -p ./img/micro-thumbs && node scripts/make-micro-thumbs.js 7 10 ./img/thumbs ./img/micro-thumbs",
     "upload": "node scripts/upload-with-sftp-upload.js _out",
     "upload:staging": "node scripts/upload-with-sftp-upload.js _out test"
   },

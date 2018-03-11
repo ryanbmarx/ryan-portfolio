@@ -2,7 +2,7 @@
 	// The difference between this and a section is that containers
 	// are width-contrained to $section-max-width and .sections always
 	// will be fullwidth with no horiz padding.
-
+	box-sizing: border-box;
 	max-width: $section-max-width;
 	margin: 0 auto;
 	padding: $nav-height $section-padding $section-padding $section-padding; // Extra height here for navigating under the sticky nav bar

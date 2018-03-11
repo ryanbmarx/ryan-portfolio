@@ -69,6 +69,7 @@
 	&__container{
 		box-sizing: border-box;
 		padding: #{$project-padding} #{$project-padding / 2};
+	    overflow: hidden; // When the links are bigger, they will overflow the <body> which is dumb.
 	}
 
 	&__thumb{

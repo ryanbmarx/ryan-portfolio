@@ -79,6 +79,19 @@
 			border-color: $blue-baby;
 		}
 	}
+	&__photo-credit{
+		@extend %agate;
+		color: black;
+		margin: 0;
+		position:absolute;
+		top:100%;
+		right: 0;
+		padding: 5px;
+
+		a{
+			color:black;
+		}
+	}
 }
 
 
@@ -90,7 +103,7 @@
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 	.header{
-		background: #eee url(/img/header-background--desktop.jpg) center right no-repeat;
+		background: #eee url(/img/header-background--desktop.jpg) center center no-repeat;
 	    background-size: cover;
 		height: 100vh;
 		margin-bottom: 0;
@@ -111,8 +124,13 @@
 
 	}
 
+	body[data-short-header=true] .header{
+		height: auto;
+	}
 
 }
+
+
 
 @media all and (min-width: $desktop-min-width){
 	// ONLY CHANGES FOR DESKTOPS

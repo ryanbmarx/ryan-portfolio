@@ -96,9 +96,9 @@
 
 
 
-@media all and (min-width: $phablet-min-width){
-	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS	
-}
+// @media all and (min-width: $phablet-min-width){
+// 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS	
+// }
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
@@ -130,11 +130,9 @@
 
 }
 
-
-
-@media all and (min-width: $desktop-min-width){
-	// ONLY CHANGES FOR DESKTOPS
-	// .header{
-	// 	background: #eee url(/img/header-background--desktop.jpg) center right no-repeat;
-	// }
-}
+// @media all and (min-width: $desktop-min-width){
+// 	// ONLY CHANGES FOR DESKTOPS
+// 	// .header{
+// 	// 	background: #eee url(/img/header-background--desktop.jpg) center right no-repeat;
+// 	// }
+// }

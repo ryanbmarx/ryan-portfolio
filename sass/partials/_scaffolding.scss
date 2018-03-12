@@ -32,6 +32,10 @@
 	}
 }
 
+.river{
+	max-width: $phablet-min-width;
+	margin: 0 auto;
+}
 
 @media all and (min-width: $phablet-min-width){
 	// ONLY CHANGES FOR PHABLETS, TABLETS + DESKTOPS	
@@ -45,4 +49,8 @@
 
 @media all and (min-width: $desktop-min-width){
 	// ONLY CHANGES FOR DESKTOPS
+	.river{
+		max-width: $tablet-min-width;
+		margin: 0 auto;
+	}
 }

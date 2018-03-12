@@ -10,7 +10,7 @@ $gallery-column-width: 280px;
 
 .gallery{
 	max-width: 1000px;
-	margin: 0 auto;
+	margin: $grid-gap auto;
 	columns:#{$gallery-column-width} auto;
 	column-gap: $grid-gap;
 
